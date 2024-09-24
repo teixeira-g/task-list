@@ -6,7 +6,7 @@ import { colors } from "@/styles/colors";
 export const RoundButton = () => {
   return (
     <TouchableOpacity style={styles.button} activeOpacity={0.6}>
-      <Feather name="plus" size={40} color="#FFFFFF" />
+      <Feather name="plus" size={40} color={colors.white} />
     </TouchableOpacity>
   );
 };
