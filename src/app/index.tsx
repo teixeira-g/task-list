@@ -1,5 +1,4 @@
-import { Button, StyleSheet, Text } from "react-native";
-import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { Button, StyleSheet, Text, View } from "react-native";
 import { router } from "expo-router";
 
 import { colors } from "@/styles/colors";
@@ -13,12 +12,10 @@ export default function LoginScreen() {
   }
 
   return (
-    <SafeAreaProvider>
-      <SafeAreaView style={styles.container}>
-        <Header/>
-        <Button title={"Task List"} onPress={handleTest}></Button>
-      </SafeAreaView>
-    </SafeAreaProvider>
+    <View style={styles.container}>
+      <Header />
+      <Button title={"Task List"} onPress={handleTest}></Button>
+    </View>
   );
 }
 

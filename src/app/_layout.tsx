@@ -25,7 +25,7 @@ export default function RootLayout() {
 
   return (
     <>
-      <StatusBar barStyle={"dark-content"} />
+      <StatusBar barStyle={"default"} />
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="index" />
         <Stack.Screen name="task-list" />

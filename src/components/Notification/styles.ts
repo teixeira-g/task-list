@@ -9,7 +9,7 @@ export const Overlay = styled.View`
   align-items: center;
 `;
 
-export const Container = styled.View`
+export const NotificationContainer = styled.View`
   height: 148px;
   padding: 50px 24px 24px;
   background-color: ${colors.gray[200]};

@@ -1,6 +1,6 @@
 import { Modal } from "react-native";
 
-import { Banner, Container, Overlay } from "./styles";
+import { Banner, NotificationContainer, Overlay } from "./styles";
 import { NotificationText } from "@/styles/global";
 
 type Props = {
@@ -11,10 +11,10 @@ export function Notification({ visible }: Props) {
   return (
     <Modal transparent animationType="fade" visible={visible}>
       <Overlay>
-        <Container>
+        <NotificationContainer>
           <Banner />
           <NotificationText>Mensagem Excluída</NotificationText>
-        </Container>
+        </NotificationContainer>
       </Overlay>
     </Modal>
   );
