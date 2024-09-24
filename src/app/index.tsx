@@ -15,7 +15,7 @@ export default function LoginScreen() {
   return (
     <SafeAreaProvider>
       <SafeAreaView style={styles.container}>
-        <Text>Login Screen</Text>
+        <Header/>
         <Button title={"Task List"} onPress={handleTest}></Button>
       </SafeAreaView>
     </SafeAreaProvider>
@@ -26,7 +26,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.gray[200],
-    alignItems: "center",
-    justifyContent: "center",
   },
 });

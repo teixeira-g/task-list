@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import {colors} from "@/styles/colors";
 
 export const Header = () => {
     return (
@@ -16,6 +17,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly', // Alinha verticalmente o conteúdo no centro
         alignItems: 'baseline',  // Alinha horizontalmente o conteúdo no centro
         borderRadius: 15,
+        backgroundColor: colors.blue,
     },
     headerText: {
         fontSize: 20,          // Tamanho da fonte do título
