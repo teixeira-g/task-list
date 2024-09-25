@@ -4,7 +4,7 @@ import { fontFamily } from "@/styles/fontFamily";
 import { colors } from "@/styles/colors";
 
 export const H1Text = styled.Text`
-  font-size: 48px;
+  font-size: 45px;
   font-family: ${fontFamily.firaSansBd};
   color: ${colors.white};
 `;
@@ -40,7 +40,7 @@ export const PlaceholderText = styled.Text`
 `;
 
 export const NotificationText = styled.Text`
-  font-size: 26px;
+  font-size: 40px;
   font-family: ${fontFamily.interSb};
   color: ${colors.gray[700]};
   text-align: center;

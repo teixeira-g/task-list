@@ -11,6 +11,7 @@ import {
 import { Loading } from "@/components/loading";
 
 export default function RootLayout() {
+
   const [fontsLoaded] = useFonts({
     FiraSans_700Bold,
     Inter_400Regular,

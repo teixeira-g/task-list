@@ -8,7 +8,7 @@ export const Header = () => {
   return (
     <HeaderContainer>
       <H1Text>Olá</H1Text>
-      <Text style={{ color: "#FFFFFF" }}>Nome do usuario</Text>
+      <Text style={{ color: "#FFFFFF" }}>Nome do usuário</Text>
     </HeaderContainer>
   );
 };
