@@ -7,7 +7,7 @@ type Props = {
   visible?: boolean;
 };
 
-export function Notification({ visible }: Props) {
+export const Notification = ({ visible }: Props) => {
   return (
     <Modal transparent animationType="fade" visible={visible}>
       <Overlay>
@@ -18,4 +18,4 @@ export function Notification({ visible }: Props) {
       </Overlay>
     </Modal>
   );
-}
+};

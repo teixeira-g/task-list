@@ -10,7 +10,7 @@ export const H1Text = styled.Text`
 `;
 
 export const H2Text = styled.Text`
-  font-size: 24px;
+  font-size: 22px;
   font-family: ${fontFamily.interMd};
   color: ${colors.white};
 `;
