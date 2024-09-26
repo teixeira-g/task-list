@@ -13,7 +13,7 @@ export default function TaskListScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.gray[200],
+    backgroundColor: colors.gray[300],
     alignItems: "center",
     justifyContent: "center",
   },

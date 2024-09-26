@@ -11,7 +11,6 @@ import {
 import { Loading } from "@/components/loading";
 
 export default function RootLayout() {
-
   const [fontsLoaded] = useFonts({
     FiraSans_700Bold,
     Inter_400Regular,
@@ -29,7 +28,7 @@ export default function RootLayout() {
       <StatusBar barStyle={"default"} />
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="index" />
-        <Stack.Screen name="task-list" />
+        <Stack.Screen name="addTask" />
       </Stack>
     </>
   );
