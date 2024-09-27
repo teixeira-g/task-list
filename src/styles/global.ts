@@ -33,12 +33,6 @@ export const DescriptionText = styled.Text`
   color: ${colors.gray[700]};
 `;
 
-export const PlaceholderText = styled.Text`
-  font-size: 18px;
-  font-family: ${fontFamily.interReg};
-  color: ${colors.gray[500]};
-`;
-
 export const NotificationText = styled.Text`
   font-size: 40px;
   font-family: ${fontFamily.interSb};

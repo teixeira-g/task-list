@@ -1,23 +1,14 @@
-import { colors } from "@/styles/colors";
-import { SInput, BInput } from "./styles";
+import { TitleInputStyled, DescInputStyled } from "./styles";
 
-export function InputTasks() {
+export const TitleInput = () => {
+  return <TitleInputStyled placeholder="Título" keyboardType="default" />;
+};
+export const DescInput = () => {
   return (
-    <SInput
-      placeholder="Titulo"
-      placeholderTextColor={colors.gray[500]}
+    <DescInputStyled
+      placeholder="Descrição"
       keyboardType="default"
-      style={{ color: colors.gray[500] }}
+      multiline={true}
     />
   );
-}
-export function BInputTasks() {
-  return (
-    <BInput
-      placeholder="Titulo"
-      placeholderTextColor={colors.gray[500]}
-      keyboardType="default"
-      style={{ color: colors.gray[500] }}
-    />
-  );
-}
+};
