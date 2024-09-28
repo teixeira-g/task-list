@@ -2,7 +2,7 @@ import { colors } from "@/styles/colors";
 import styled from "styled-components/native";
 
 export const AddButtonContainer = styled.TouchableOpacity.attrs({
-  activeOpacity: 0.7,
+  activeOpacity: 1.0,
 })`
   width: 70px;
   height: 70px;
