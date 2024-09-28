@@ -14,6 +14,7 @@ export const AddButtonContainer = styled.TouchableOpacity.attrs({
   position: absolute;
   bottom: 40px;
   right: 30px;
+  z-index: 10;
 `;
 
 export const CloseButtonContainer = styled.TouchableOpacity.attrs({

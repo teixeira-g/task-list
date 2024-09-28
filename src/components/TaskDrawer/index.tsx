@@ -14,7 +14,11 @@ export const TaskDrawer = ({ title, onPress, isOpen }: Props) => {
   return (
     <TaskContainer>
       <H2DarkText>{title}</H2DarkText>
-      <TouchableOpacity onPress={onPress} activeOpacity={0.7}>
+      <TouchableOpacity
+        onPress={onPress}
+        activeOpacity={0.7}
+        hitSlop={{ top: 20, right: 20, bottom: 20, left: 20 }}
+      >
         <Feather
           name={isOpen ? "chevron-up" : "chevron-down"}
           size={34}

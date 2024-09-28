@@ -1,18 +1,34 @@
-import { colors } from "@/styles/colors";
 import styled from "styled-components/native";
 
-export const SInput = styled.TextInput`
+import { colors } from "@/styles/colors";
+import { fontFamily } from "@/styles/fontFamily";
+
+export const TitleInputStyled = styled.TextInput.attrs({
+  placeholderTextColor: colors.gray[500],
+})`
   flex-direction: row;
-  width: 362px;
   height: 68px;
-  border-radius: 20px;
+  padding: 0 24px;
+  margin: 24px 12px 0 12px;
+  font-family: ${fontFamily.interReg};
+  font-size: 16px;
+  color: ${colors.gray[700]};
   background-color: ${colors.gray[300]};
+  border-radius: 18px;
 `;
 
-export const BInput = styled.TextInput`
+export const DescInputStyled = styled.TextInput.attrs({
+  textAlignVertical: "top",
+  textBreakStrategy: "highQuality",
+  placeholderTextColor: colors.gray[500],
+})`
   flex-direction: row;
-  width: 362px;
-  height: 292px;
-  border-radius: 20px;
+  height: 242px;
+  padding: 24px;
+  margin: 24px 12px 0 12px;
+  font-family: ${fontFamily.interReg};
+  font-size: 16px;
+  color: ${colors.gray[700]};
   background-color: ${colors.gray[300]};
+  border-radius: 18px;
 `;

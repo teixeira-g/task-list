@@ -4,6 +4,7 @@ import { colors } from "@/styles/colors";
 import { Header } from "@/components/Header";
 import { TaskDrawer } from "@/components/TaskDrawer";
 import { useState } from "react";
+import { TitleInput, DescInput } from "@/components/Inputs";
 
 export default function LoginScreen() {
   const [isActiveTasksOpen, setActiveTasksOpen] = useState<boolean>(false);
@@ -16,8 +17,8 @@ export default function LoginScreen() {
 
   return (
     <View style={styles.container}>
-      <Header />
       <AddButton />
+      <Header />
       <TaskDrawer
         title={"Tarefas em aberto"}
         onPress={handleToggleActiveTasks}
