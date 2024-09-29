@@ -19,7 +19,6 @@ export const TitleInputStyled = styled.TextInput.attrs({
 
 export const DescInputStyled = styled.TextInput.attrs({
   textAlignVertical: "top",
-  textBreakStrategy: "highQuality",
   placeholderTextColor: colors.gray[500],
 })`
   flex-direction: row;

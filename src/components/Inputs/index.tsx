@@ -6,9 +6,10 @@ export const TitleInput = () => {
 export const DescInput = () => {
   return (
     <DescInputStyled
-      placeholder="Descrição"
-      keyboardType="default"
+      placeholder={"Descrição"}
+      keyboardType={"default"}
       multiline={true}
+      textBreakStrategy={"highQuality"}
     />
   );
 };
