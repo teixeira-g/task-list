@@ -5,6 +5,7 @@ import { Header } from "@/components/Header";
 import { TaskDrawer } from "@/components/TaskDrawer";
 import { useState } from "react";
 import { TitleInput, DescInput } from "@/components/Inputs";
+import { Notification } from "@/components/Notification";
 
 export default function LoginScreen() {
   const [isActiveTasksOpen, setActiveTasksOpen] = useState<boolean>(false);
@@ -29,6 +30,7 @@ export default function LoginScreen() {
         onPress={handleToggleCompletedTasks}
         isOpen={isCompletedTasksOpen}
       />
+      <Notification />
     </View>
   );
 }

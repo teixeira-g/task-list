@@ -15,14 +15,15 @@ export const NotificationContainer = styled.View`
   background-color: ${colors.gray[200]};
   position: relative;
   justify-content: center;
-  border-radius: 20px;
+  border-radius: 18px;
   overflow: hidden;
 `;
 
 export const Banner = styled.View`
-  width: 100%;
   height: 50px;
   background-color: ${colors.blue};
   position: absolute;
   top: 0;
+  left: 0;
+  right: 0;
 `;

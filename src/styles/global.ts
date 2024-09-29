@@ -34,7 +34,7 @@ export const DescriptionText = styled.Text`
 `;
 
 export const NotificationText = styled.Text`
-  font-size: 40px;
+  font-size: 30px;
   font-family: ${fontFamily.interSb};
   color: ${colors.gray[700]};
   text-align: center;
