@@ -6,17 +6,15 @@ import {
     CloseButtonContainer,
     ConfirmButtonContainer,
 } from "./styles";
-import {useRouter} from "expo-router";
 
 interface AddButtonProps {
-    onPress?: () => void
+    onPress: () => void
 }
 
-export const AddButton = ({onPress}: AddButtonProps) => {
-   const router = useRouter();
+export const AddButton: React.FC<AddButtonProps> = ({onPress}) => {
 
     return (
-        <AddButtonContainer>
+        <AddButtonContainer onPress={onPress}>
             <Feather name="plus" size={50} color={colors.white}/>
         </AddButtonContainer>
     );

@@ -7,10 +7,11 @@ import { useState, useCallback } from "react";
 import React from 'react'
 import { TitleInput, DescInput } from "@/components/Inputs";
 import {GestureHandlerRootView} from "react-native-gesture-handler";
-import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
-import {router, useRouter} from "expo-router";
+import { useRouter} from "expo-router";
 
 export default function LoginScreen() {
+  const router = useRouter();
+
   const [isActiveTasksOpen, setActiveTasksOpen] = useState<boolean>(false);
   const [isCompletedTasksOpen, setCompletedTasksOpen] =
     useState<boolean>(false);
@@ -19,13 +20,12 @@ export default function LoginScreen() {
   const handleToggleCompletedTasks = () =>
     setCompletedTasksOpen(!isCompletedTasksOpen);
 
-  const router = useRouter();
 
   //renders
   return (
    <GestureHandlerRootView style={{flex: 1}}>
        <View style={styles.container}>
-           <AddButton />
+           <AddButton onPress={() => router.push('/addTask')}/>
            <Header />
            <TaskDrawer
                title={"Tarefas em aberto"}
@@ -37,6 +37,8 @@ export default function LoginScreen() {
                onPress={handleToggleCompletedTasks}
                isOpen={isCompletedTasksOpen}
            />
+
+
 
        </View>
    </GestureHandlerRootView>
