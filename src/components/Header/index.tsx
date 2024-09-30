@@ -1,7 +1,5 @@
-import React from "react";
-
-import { H1Text, H2Text } from "@/styles/global";
 import { HeaderContainer } from "./styles";
+import { H1Text, H2Text } from "@/styles/global";
 
 export const Header = () => {
   return (
