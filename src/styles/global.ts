@@ -22,15 +22,15 @@ export const H2DarkText = styled.Text`
 `;
 
 export const TitleText = styled.Text`
-  font-size: 20px;
-  font-family: ${fontFamily.interBd};
+  font-size: 18px;
+  font-family: ${fontFamily.interSb};
   color: ${colors.gray[700]};
 `;
 
 export const DescriptionText = styled.Text`
   font-size: 14px;
-  font-family: ${fontFamily.interReg};
-  color: ${colors.gray[700]};
+  font-family: ${fontFamily.interMd};
+  color: ${colors.gray[600]};
 `;
 
 export const NotificationText = styled.Text`

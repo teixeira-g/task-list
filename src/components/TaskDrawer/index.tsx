@@ -1,8 +1,9 @@
-import { H2DarkText } from "@/styles/global";
-import { Feather } from "@expo/vector-icons";
-import { TaskContainer } from "./styles";
-import { colors } from "@/styles/colors";
 import { TouchableOpacity } from "react-native";
+import { Feather } from "@expo/vector-icons";
+
+import { colors } from "@/styles/colors";
+import { TaskContainer } from "./styles";
+import { H2DarkText } from "@/styles/global";
 
 type Props = {
   title: string;
@@ -22,7 +23,7 @@ export const TaskDrawer = ({ title, onPress, isOpen }: Props) => {
         <Feather
           name={isOpen ? "chevron-up" : "chevron-down"}
           size={34}
-          color={colors.gray[600]}
+          color={isOpen ? colors.gray[600] : colors.gray[400]}
         />
       </TouchableOpacity>
     </TaskContainer>
