@@ -8,6 +8,7 @@ import React from 'react'
 import { TitleInput, DescInput } from "@/components/Inputs";
 import {GestureHandlerRootView} from "react-native-gesture-handler";
 import { useRouter} from "expo-router";
+import {TaskCard} from "@/components/TaskCard";
 
 export default function LoginScreen() {
     const router = useRouter();
@@ -31,15 +32,17 @@ export default function LoginScreen() {
                     title={"Tarefas em aberto"}
                     onPress={handleToggleActiveTasks}
                     isOpen={isActiveTasksOpen}
-                />
+                >
+                </TaskDrawer>
+
+
                 <TaskDrawer
                     title={"Tarefas concluídas"}
                     onPress={handleToggleCompletedTasks}
                     isOpen={isCompletedTasksOpen}
                 />
 
-
-
+                <TaskCard></TaskCard>
             </View>
         </GestureHandlerRootView>
 
