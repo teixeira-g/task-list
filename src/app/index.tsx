@@ -7,16 +7,10 @@ import { TaskDrawer } from "@/components/TaskDrawer";
 import { TitleInput, DescInput } from "@/components/Inputs";
 import { Notification } from "@/components/Notification";
 import { TaskCard } from "@/components/TaskCard";
-
-/* type Task = {
-  id: number;
-  title: string;
-  description: string;
-  isCompleted: boolean;
-}; */
+import { useTask } from "@/context/TaskContext";
 
 export default function LoginScreen() {
-  // const [tasks, setTasks] = useState<Task[]>([]);
+  const { tasks } = useTask();
   const [isActiveTasksOpen, setActiveTasksOpen] = useState<boolean>(false);
   const [isCompletedTasksOpen, setCompletedTasksOpen] =
     useState<boolean>(false);
@@ -24,24 +18,6 @@ export default function LoginScreen() {
   const handleToggleActiveTasks = () => setActiveTasksOpen(!isActiveTasksOpen);
   const handleToggleCompletedTasks = () =>
     setCompletedTasksOpen(!isCompletedTasksOpen);
-
-  // const handleAddTask = () => {
-  //   const newTask: Task = {
-  //     id: tasks.length + 1,
-  //     title: "Tarefa",
-  //     description: "Assunto...",
-  //     isCompleted: false,
-  //   };
-  //   setTasks([...tasks, newTask]);
-  // };
-
-  // const handleToggleTaskCompletion = (id: number) => {
-  //   setTasks(
-  //     tasks.map((task) =>
-  //       task.id === id ? { ...task, isCompleted: !task.isCompleted } : task
-  //     )
-  //   );
-  // };
 
   return (
     <View style={styles.container}>
@@ -56,16 +32,17 @@ export default function LoginScreen() {
         onPress={handleToggleCompletedTasks}
         isOpen={isCompletedTasksOpen}
       />
-      {/* {tasks.map((task) => (
+      {tasks.map((task) => (
         <TaskCard
           key={task.id}
           title={task.title}
           description={task.description}
           isCompleted={task.isCompleted}
-          onPress={() => handleToggleTaskCompletion(task.id)}
+          onToggleTaskStatus={() => console.log(task.id)}
+          onEditTask={() => console.log(task.id)}
         />
       ))}
-      <Button title="Teste" onPress={handleAddTask} /> */}
+      <AddButton />
     </View>
   );
 }
