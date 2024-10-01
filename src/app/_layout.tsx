@@ -8,6 +8,7 @@ import {
   Inter_700Bold,
 } from "@expo-google-fonts/inter";
 
+import { TaskProvider } from "@/context/TaskContext";
 import { Loading } from "@/components/loading";
 
 export default function RootLayout() {
@@ -24,12 +25,12 @@ export default function RootLayout() {
   }
 
   return (
-    <>
+    <TaskProvider>
       <StatusBar barStyle={"light-content"} />
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="index" />
         <Stack.Screen name="addTask" />
       </Stack>
-    </>
+    </TaskProvider>
   );
 }

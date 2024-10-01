@@ -8,19 +8,21 @@ type Props = {
   title: string;
   description: string;
   isCompleted: boolean;
-  onPress: () => void;
+  onToggleTaskStatus: () => void;
+  onEditTask: () => void;
 };
 
 export const TaskCard = ({
   title,
   description,
   isCompleted,
-  onPress,
+  onToggleTaskStatus,
+  onEditTask,
 }: Props) => {
   return (
     <TaskCardContainer>
       <TouchableOpacity
-        onPress={onPress}
+        onPress={onToggleTaskStatus}
         activeOpacity={0.7}
         hitSlop={{ top: 20, right: 20, bottom: 20, left: 20 }}
       >
@@ -45,12 +47,18 @@ export const TaskCard = ({
 
         <Border />
       </TextContainer>
-      <Ionicons
-        name={"ellipsis-horizontal-circle"}
-        size={26}
-        color={colors.gray[400]}
-        style={{ marginBottom: 32 }}
-      />
+      <TouchableOpacity
+        onPress={onEditTask}
+        activeOpacity={0.7}
+        hitSlop={{ top: 20, right: 20, bottom: 20, left: 20 }}
+      >
+        <Ionicons
+          name={"ellipsis-horizontal-circle"}
+          size={26}
+          color={colors.gray[400]}
+          style={{ marginBottom: 32 }}
+        />
+      </TouchableOpacity>
     </TaskCardContainer>
   );
 };
