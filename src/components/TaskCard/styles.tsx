@@ -24,4 +24,5 @@ export const TaskDone = styled.TouchableOpacity`
     height: 56px;
     background-color: rgba(240, 248, 255, 0.03);
     justify-content: center;
+    padding: 16px;
 `;

@@ -29,13 +29,13 @@ export default function RootLayout() {
     <>
       <StatusBar barStyle={"light-content"} />
       <Stack screenOptions={{
-        headerShown: true,
+        headerShown: false,
         headerStyle:{
           backgroundColor: colors.blue,
         }
       }}>
         <Stack.Screen name="index" options={{title: "Tela inicial",headerShown: false}} />
-        <Stack.Screen name="addTask" options={{title: "Adicionar tarefa"}}/>
+        <Stack.Screen name="addTask" options={{title: "Nova tarefa"}}/>
       </Stack>
     </>
   );

@@ -5,7 +5,7 @@ export function TaskCard(){
     return (
         <Container>
             <TaskDone>
-                <Feather name="circle" size={24} color={"white"}></Feather>
+                <Feather name="circle" size={24} color={"#88AAB1"}></Feather>
             </TaskDone>
             <TaskText>Tarefa</TaskText>
         </Container>

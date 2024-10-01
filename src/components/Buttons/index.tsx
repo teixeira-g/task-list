@@ -5,6 +5,7 @@ import {
     AddButtonContainer,
     CloseButtonContainer,
     ConfirmButtonContainer,
+    BackButtonContainer,
 } from "./styles";
 
 interface AddButtonProps {
@@ -33,5 +34,13 @@ export const ConfirmButton = () => {
         <ConfirmButtonContainer>
             <Feather name="check" size={50} color={colors.white}/>
         </ConfirmButtonContainer>
+    );
+};
+
+export const BackButton = () => {
+    return (
+        <BackButtonContainer>
+            <Feather name={"arrow-left-circle"} size={50} color={colors.white}/>
+        </BackButtonContainer>
     );
 };
