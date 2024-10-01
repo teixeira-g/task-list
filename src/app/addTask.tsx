@@ -1,16 +1,23 @@
-import { View, Text, Button } from 'react-native';
+import {View, Text, Button, StyleSheet} from 'react-native';
 import { useRouter } from 'expo-router';
+import {colors} from "@/styles/colors";
 
-export default function OutraTela() {
+export default function AddTask() {
     const router = useRouter();
 
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <View style={styles.container}>
             <Text>Você está na outra tela!</Text>
-            <Button
-                title="Voltar"
-                onPress={() => router.back()}
-            />
+
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: colors.gray[300],
+    },
+});
