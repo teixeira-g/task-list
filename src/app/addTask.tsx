@@ -7,7 +7,7 @@ import {
 } from "react-native";
 import { useRouter } from "expo-router";
 import { colors } from "@/styles/colors";
-import { TitleInput, DescInput, InputScreen } from "@/components/Inputs";
+import { TitleInput, DescInput } from "@/components/Inputs";
 import { ConfirmButton, BackButton } from "@/components/Buttons";
 
 export default function AddTask() {
@@ -17,7 +17,8 @@ export default function AddTask() {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.container}>
         <Text>Nova Tarefa</Text>
-        <InputScreen />
+        <TitleInput />
+        <DescInput />
         <ConfirmButton />
       </View>
     </TouchableWithoutFeedback>
