@@ -37,9 +37,9 @@ export const ConfirmButton = () => {
     );
 };
 
-export const BackButton = () => {
+export const BackButton: React.FC<AddButtonProps> = ({onPress}) => {
     return (
-        <BackButtonContainer>
+        <BackButtonContainer onPress={onPress}>
             <Feather name={"arrow-left-circle"} size={50} color={colors.white}/>
         </BackButtonContainer>
     );

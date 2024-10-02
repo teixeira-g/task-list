@@ -12,7 +12,7 @@ export const TitleInputStyled = styled.TextInput.attrs({
   padding: 0 24px;
   margin: 24px 12px 0 12px;
   font-family: ${fontFamily.interBd};
-  font-size: 16px;
+  font-size: 25px;
   color: ${colors.white};
   background-color: ${colors.gray[400]};
   border-radius: 18px;
@@ -29,7 +29,7 @@ export const DescInputStyled = styled.TextInput.attrs({
   padding: 24px;
   margin: 24px 12px 0 12px;
   font-family: ${fontFamily.interReg};
-  font-size: 16px;
+  font-size: 18px;
   color: ${colors.white};
   background-color: ${colors.gray[400]};
   border-radius: 18px;

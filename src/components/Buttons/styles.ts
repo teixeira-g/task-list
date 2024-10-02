@@ -65,10 +65,10 @@ export const BackButtonContainer = styled.TouchableOpacity.attrs({
   width: 70px;
   height: 70px;
   border-radius: 35px;
-  background-color: ${colors.gray};
+  background-color: ${colors.gray[200]};
   justify-content: center;
   align-items: center;
   position: absolute;
   bottom: 40px;
-  right: 30px;
+  left: 30px;
 `;
