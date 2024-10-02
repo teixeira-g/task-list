@@ -1,25 +1,26 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, ReactNode, useContext, useState } from "react";
+import { TaskProps } from "@/utils/types";
 
-type Task = {
-  id: number;
-  title: string;
-  description: string;
-  isCompleted: boolean;
+type TaskContextProps = {
+  tasks: TaskProps[];
+  addTask: (task: TaskProps) => void;
 };
 
-type TaskContextType = {
-  tasks: Task[];
-  addTask: (task: Task) => void;
-};
+const TaskContext = createContext<TaskContextProps | undefined>(undefined);
 
-const TaskContext = createContext<TaskContextType | undefined>(undefined);
-
-export const TaskProvider: React.FC<{ children: React.ReactNode }> = ({
+export const TaskProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [tasks, setTasks] = useState<Task[]>([]);
+  const [tasks, setTasks] = useState<TaskProps[]>([
+    {
+      id: 0,
+      title: "",
+      description: "",
+      isCompleted: false,
+    },
+  ]);
 
-  const addTask = (task: Task) => {
+  const addTask = (task: TaskProps) => {
     setTasks((prevTasks) => [...prevTasks, task]);
   };
 

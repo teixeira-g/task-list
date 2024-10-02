@@ -45,20 +45,6 @@ export const ConfirmButtonContainer = styled.TouchableOpacity.attrs({
   right: 30px;
 `;
 
-// export const BackButton = styled.TouchableOpacity.attrs({
-//   activeOpacity: 0.7,
-// })`
-//   width: 70px;
-//   height: 70px;
-//   border-radius: 35px;
-//   background-color: ${colors.gray};
-//   justify-content: center;
-//   align-items: center;
-//   position: absolute;
-//   bottom: 40px;
-//   right: 30px;
-// `;
-
 export const BackButtonContainer = styled.TouchableOpacity.attrs({
   activeOpacity: 0.7,
 })`
