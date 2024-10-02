@@ -15,12 +15,3 @@ export const DescInput = () => {
     />
   );
 };
-
-export const InputScreen = () => {
-  return (
-    <View style={{ flex: 1 }}>
-      <TitleInput />
-      <DescInput />
-    </View>
-  );
-};
