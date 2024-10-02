@@ -1,20 +1,28 @@
-import { StyleSheet, Text, View } from "react-native";
+import {View, Text, Button, StyleSheet} from 'react-native';
+import { useRouter } from 'expo-router';
+import {colors} from "@/styles/colors";
+import { TitleInput, DescInput } from "@/components/Inputs"
+import {ConfirmButton, BackButton} from "@/components/Buttons";
 
-import { colors } from "@/styles/colors";
+export default function AddTask() {
+  const router = useRouter();
 
-export default function TaskListScreen() {
   return (
-    <View style={styles.container}>
-      <Text>Task List Screen</Text>
-    </View>
+      <View style={styles.container}>
+        <Text>Nova Tarefa</Text>
+        <TitleInput></TitleInput>
+        <DescInput></DescInput>
+        <ConfirmButton></ConfirmButton>
+      </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    paddingTop: 150,
     backgroundColor: colors.gray[300],
-    alignItems: "center",
-    justifyContent: "center",
   },
 });

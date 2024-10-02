@@ -1,55 +1,56 @@
-import { StyleSheet, View, Button } from "react-native";
-import { useState } from "react";
+import { StyleSheet, View, Text, Button } from "react-native";
 import { AddButton } from "@/components/Buttons";
 import { colors } from "@/styles/colors";
 import { Header } from "@/components/Header";
 import { TaskDrawer } from "@/components/TaskDrawer";
+import { useState, useCallback } from "react";
+import React from 'react'
 import { TitleInput, DescInput } from "@/components/Inputs";
-import { Notification } from "@/components/Notification";
-import { TaskCard } from "@/components/TaskCard";
-import { useTask } from "@/context/TaskContext";
+import {GestureHandlerRootView} from "react-native-gesture-handler";
+import { useRouter} from "expo-router";
+import {TaskCard} from "@/components/TaskCard";
 
 export default function LoginScreen() {
-  const { tasks } = useTask();
-  const [isActiveTasksOpen, setActiveTasksOpen] = useState<boolean>(false);
-  const [isCompletedTasksOpen, setCompletedTasksOpen] =
-    useState<boolean>(false);
+    const router = useRouter();
 
-  const handleToggleActiveTasks = () => setActiveTasksOpen(!isActiveTasksOpen);
-  const handleToggleCompletedTasks = () =>
-    setCompletedTasksOpen(!isCompletedTasksOpen);
+    const [isActiveTasksOpen, setActiveTasksOpen] = useState<boolean>(false);
+    const [isCompletedTasksOpen, setCompletedTasksOpen] =
+        useState<boolean>(false);
 
-  return (
-    <View style={styles.container}>
-      <Header />
-      <TaskDrawer
-        title={"Tarefas em aberto"}
-        onPress={handleToggleActiveTasks}
-        isOpen={isActiveTasksOpen}
-      />
-      <TaskDrawer
-        title={"Tarefas concluídas"}
-        onPress={handleToggleCompletedTasks}
-        isOpen={isCompletedTasksOpen}
-      />
-      {tasks.map((task) => (
-        <TaskCard
-          key={task.id}
-          title={task.title}
-          description={task.description}
-          isCompleted={task.isCompleted}
-          onToggleTaskStatus={() => console.log(task.id)}
-          onEditTask={() => console.log(task.id)}
-        />
-      ))}
-      <AddButton />
-    </View>
-  );
+    const handleToggleActiveTasks = () => setActiveTasksOpen(!isActiveTasksOpen);
+    const handleToggleCompletedTasks = () =>
+        setCompletedTasksOpen(!isCompletedTasksOpen);
+
+
+    //renders
+    return (
+        <GestureHandlerRootView style={{flex: 1}}>
+            <View style={styles.container}>
+                <AddButton onPress={() => router.push('/addTask')}/>
+                <Header />
+                <TaskDrawer
+                    title={"Tarefas em aberto"}
+                    onPress={handleToggleActiveTasks}
+                    isOpen={isActiveTasksOpen}
+                >
+                </TaskDrawer>
+
+
+                <TaskDrawer
+                    title={"Tarefas concluídas"}
+                    onPress={handleToggleCompletedTasks}
+                    isOpen={isCompletedTasksOpen}
+                />
+
+            </View>
+        </GestureHandlerRootView>
+
+    );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.gray[300],
-  },
+    container: {
+        flex: 1,
+        backgroundColor: colors.gray[300],
+    },
 });
