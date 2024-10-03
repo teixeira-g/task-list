@@ -8,8 +8,8 @@ type Props = {
   title: string;
   description: string;
   isCompleted: boolean;
-  onToggleTaskStatus: () => void;
-  onEditTask: () => void;
+  //onToggleTaskStatus: () => void;
+  //onEditTask: () => void;
 };
 
 export const TaskCard = ({
@@ -56,7 +56,7 @@ export const TaskCard = ({
           name={"ellipsis-horizontal-circle"}
           size={26}
           color={colors.gray[400]}
-          style={{ marginBottom: 32 }}
+          style={{ marginBottom: 5 }}
         />
       </TouchableOpacity>
     </TaskCardContainer>
