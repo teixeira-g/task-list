@@ -12,22 +12,23 @@ export default function Screen() {
   const router = useRouter();
 
   const [isActiveTasksOpen, setActiveTasksOpen] = useState<boolean>(false);
-  const [isCompletedTasksOpen, setCompletedTasksOpen] = useState<boolean>(false);
+  const [isCompletedTasksOpen, setCompletedTasksOpen] =
+    useState<boolean>(false);
 
   const handleToggleActiveTasks = () => setActiveTasksOpen(!isActiveTasksOpen);
-  const handleToggleCompletedTasks = () => setCompletedTasksOpen(!isCompletedTasksOpen);
+  const handleToggleCompletedTasks = () =>
+    setCompletedTasksOpen(!isCompletedTasksOpen);
 
   return (
     <View style={{ flex: 1 }}>
       <View style={styles.container}>
-        <AddButton onPress={() => router.push("/addTask")} />
+        <AddButton onPress={() => router.push("/editTask")} />
         <Header />
         <TaskDrawer
           title={"Tarefas em aberto"}
           onPress={handleToggleActiveTasks}
           isOpen={isActiveTasksOpen}
-        >
-        </TaskDrawer>
+        ></TaskDrawer>
 
         <TaskDrawer
           title={"Tarefas concluídas"}

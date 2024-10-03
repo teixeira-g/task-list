@@ -21,7 +21,7 @@ export const AddButton: React.FC<AddButtonProps> = ({ onPress }) => {
 export const CloseButton = () => {
   return (
     <CloseButtonContainer>
-      <Feather name="trash-2" size={50} color={colors.white} />
+      <Feather name="x" size={50} color={colors.white} />
     </CloseButtonContainer>
   );
 };
