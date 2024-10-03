@@ -11,7 +11,6 @@ import {
 import { Loading } from "@/components/loading";
 import { colors } from "@/styles/colors";
 
-
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
     FiraSans_700Bold,
@@ -26,18 +25,23 @@ export default function RootLayout() {
   }
 
   return (
-      <>
-        <StatusBar barStyle={"light-content"} />
-        <Stack screenOptions={{
+    <>
+      <StatusBar barStyle={"light-content"} />
+      <Stack
+        screenOptions={{
           headerShown: true,
-          headerStyle:{
+          headerStyle: {
             backgroundColor: colors.gray[300],
           },
           headerShadowVisible: false,
-        }}>
-          <Stack.Screen name="index" options={{title: "Tela inicial",headerShown: false}} />
-          <Stack.Screen name="addTask" options={{title: "Nova tarefa"}}/>
-        </Stack>
-      </>
+        }}
+      >
+        <Stack.Screen
+          name="index"
+          options={{ title: "Tela inicial", headerShown: false }}
+        />
+        <Stack.Screen name="addTask" options={{ title: "Nova tarefa" }} />
+      </Stack>
+    </>
   );
 }

@@ -20,6 +20,7 @@ export default function AddTask() {
         <TitleInput />
         <DescInput />
         <ConfirmButton />
+        <BackButton onPress={() => router.back()} />
       </View>
     </TouchableWithoutFeedback>
   );
@@ -39,5 +40,5 @@ const styles = StyleSheet.create({
     fontSize: 40,
     color: colors.white,
     paddingBottom: 30,
-  }
+  },
 });
