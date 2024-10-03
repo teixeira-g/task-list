@@ -26,7 +26,7 @@ Siga os passos abaixo para rodar a aplicação localmente:
 git clone <URL do repositório>
 ```
 
-**Navegue até o diretório do seu projeto:**
+**Navegue até o diretório:**
 
 ```
 cd <nome do diretório>
