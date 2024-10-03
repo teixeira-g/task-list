@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FlatList, TouchableOpacity, Text } from "react-native";
+import { FlatList, TouchableOpacity } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { colors } from "@/styles/colors";
 import { TaskContainer, HeaderContainer } from "./styles";
@@ -10,9 +10,10 @@ type Props = {
   title: string;
   onPress: () => void;
   isOpen: boolean;
+  children?: React.ReactNode;
 };
 
-export const TaskDrawer = ({ title, onPress, isOpen }: Props) => {
+export const TaskDrawer = ({ title, onPress, isOpen, children }: Props) => {
   const [tasks, setTasks] = useState<
     { title: string; description: string; check: boolean }[]
   >([]);
@@ -47,10 +48,11 @@ export const TaskDrawer = ({ title, onPress, isOpen }: Props) => {
         )}
         ListEmptyComponent={() => (
           <DescriptionText>
-            <Text>Você ainda não adicionou nenhuma tarefa</Text>
+            Você ainda não adicionou nenhuma tarefa
           </DescriptionText>
         )}
       />
+      {children}
     </TaskContainer>
   );
 };

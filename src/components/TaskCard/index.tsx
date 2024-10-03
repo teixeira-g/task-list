@@ -5,9 +5,9 @@ import { Border, TaskCardContainer, TextContainer } from "./styles";
 import { TouchableOpacity } from "react-native";
 
 type Props = {
-  title: string;
-  description: string;
-  isCompleted: boolean;
+  // title: string;
+  // description: string;
+  // isCompleted: boolean;
   //onToggleTaskStatus: () => void;
   //onEditTask: () => void;
 };
