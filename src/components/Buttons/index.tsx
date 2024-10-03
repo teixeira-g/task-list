@@ -4,7 +4,6 @@ import {
   AddButtonContainer,
   CloseButtonContainer,
   ConfirmButtonContainer,
-  BackButtonContainer,
 } from "./styles";
 
 interface AddButtonProps {
@@ -22,7 +21,7 @@ export const AddButton: React.FC<AddButtonProps> = ({ onPress }) => {
 export const CloseButton = () => {
   return (
     <CloseButtonContainer>
-      <Feather name="x" size={50} color={colors.white} />
+      <Feather name="trash-2" size={50} color={colors.white} />
     </CloseButtonContainer>
   );
 };
@@ -32,13 +31,5 @@ export const ConfirmButton = () => {
     <ConfirmButtonContainer>
       <Feather name="check" size={50} color={colors.white} />
     </ConfirmButtonContainer>
-  );
-};
-
-export const BackButton: React.FC<AddButtonProps> = ({ onPress }) => {
-  return (
-    <BackButtonContainer onPress={onPress}>
-      <Feather name={"arrow-left-circle"} size={50} color={colors.white} />
-    </BackButtonContainer>
   );
 };

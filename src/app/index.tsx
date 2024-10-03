@@ -1,4 +1,4 @@
-import { StyleSheet, View } from "react-native";
+import { Button, StyleSheet, View } from "react-native";
 import { AddButton } from "@/components/Buttons";
 import { colors } from "@/styles/colors";
 import { Header } from "@/components/Header";
@@ -35,6 +35,10 @@ export default function Screen() {
           onPress={handleToggleCompletedTasks}
           isOpen={isCompletedTasksOpen}
         />
+        <Button
+          title={"Teste"}
+          onPress={() => router.push("./editTask")}
+        ></Button>
       </View>
     </View>
   );

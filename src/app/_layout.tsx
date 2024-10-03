@@ -34,13 +34,15 @@ export default function RootLayout() {
             backgroundColor: colors.gray[300],
           },
           headerShadowVisible: false,
+          headerTitleAlign: "center",
         }}
       >
         <Stack.Screen
           name="index"
           options={{ title: "Tela inicial", headerShown: false }}
         />
-        <Stack.Screen name="addTask" options={{ title: "Nova tarefa" }} />
+        <Stack.Screen name="addTask" options={{ title: "Nova Tarefa" }} />
+        <Stack.Screen name="editTask" options={{ title: "Editar Tarefa" }} />
       </Stack>
     </>
   );
