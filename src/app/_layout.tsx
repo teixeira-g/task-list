@@ -35,6 +35,10 @@ export default function RootLayout() {
           },
           headerShadowVisible: false,
           headerTitleAlign: "center",
+          headerTintColor: colors.gray[600],
+          headerTitleStyle: {
+            color: colors.gray[700],
+          },
         }}
       >
         <Stack.Screen

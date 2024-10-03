@@ -4,7 +4,7 @@ import { colors } from "@/styles/colors";
 import { fontFamily } from "@/styles/fontFamily";
 
 export const TitleInputStyled = styled.TextInput.attrs({
-  placeholderTextColor: colors.white[100],
+  placeholderTextColor: colors.gray[600],
 })`
   flex-direction: row;
   height: 68px;
@@ -21,7 +21,7 @@ export const TitleInputStyled = styled.TextInput.attrs({
 export const DescInputStyled = styled.TextInput.attrs({
   textAlignVertical: "top",
   textBreakStrategy: "highQuality",
-  placeholderTextColor: colors.white[100],
+  placeholderTextColor: colors.gray[600],
 })`
   flex-direction: row;
   height: 242px;

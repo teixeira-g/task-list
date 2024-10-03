@@ -6,17 +6,30 @@ import {
 } from "react-native";
 import { colors } from "@/styles/colors";
 import { TitleInput, DescInput } from "@/components/Inputs";
-import { CloseButton, ConfirmButton } from "@/components/Buttons";
+import { DeleteButton, ConfirmButton } from "@/components/Buttons";
 import { fontFamily } from "@/styles/fontFamily";
+import { useState } from "react";
+import { Notification } from "@/components/Notification";
+import { router } from "expo-router";
 
 export default function AddTask() {
+  const [notificationVisible, setNotificationVisible] = useState(false);
+
+  const handleDeletePress = () => {
+    setNotificationVisible(true);
+  };
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.container}>
         <TitleInput />
         <DescInput />
-        <ConfirmButton />
-        <CloseButton />
+        <ConfirmButton onPress={() => router.back()} />
+        <DeleteButton onPress={handleDeletePress} />
+        <Notification
+          visible={notificationVisible}
+          onPress={() => router.back()}
+        />
       </View>
     </TouchableWithoutFeedback>
   );
