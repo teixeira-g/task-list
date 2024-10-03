@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, Button } from "react-native";
+import {StyleSheet, View, Text, Button, Task} from "react-native";
 import { AddButton } from "@/components/Buttons";
 import { colors } from "@/styles/colors";
 import { Header } from "@/components/Header";
@@ -11,6 +11,9 @@ import {TaskCard} from "@/components/TaskCard";
 
 export default function LoginScreen() {
     const router = useRouter();
+
+    const [task, setTask] = useState<{description: string; check: boolean}[]>([]);
+    const [taskText, setTaskText] = useState<string>("");
 
     const [isActiveTasksOpen, setActiveTasksOpen] = useState<boolean>(false);
     const [isCompletedTasksOpen, setCompletedTasksOpen] =
@@ -40,6 +43,8 @@ export default function LoginScreen() {
                     onPress={handleToggleCompletedTasks}
                     isOpen={isCompletedTasksOpen}
                 />
+
+                <TaskCard title={"Varrer"} description={"Varrer a casa"} isCompleted={false}></TaskCard>
 
             </View>
         </View>

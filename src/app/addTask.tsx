@@ -17,11 +17,9 @@ export default function AddTask() {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.container}>
-        <Text style={styles.title}>Nova Tarefa</Text>
         <TitleInput />
         <DescInput />
         <ConfirmButton />
-        <BackButton onPress={() => router.back()}/>
       </View>
     </TouchableWithoutFeedback>
   );
@@ -32,7 +30,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-start",
     alignItems: "center",
-    paddingTop: 110,
+    paddingTop: 25,
     backgroundColor: colors.gray[300],
   },
 
