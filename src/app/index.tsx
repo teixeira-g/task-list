@@ -8,7 +8,7 @@ import React from "react";
 import { useRouter } from "expo-router";
 import { TaskCard } from "@/components/TaskCard";
 
-export default function LoginScreen() {
+export default function Screen() {
   const router = useRouter();
 
   const [isActiveTasksOpen, setActiveTasksOpen] = useState<boolean>(false);

@@ -8,8 +8,8 @@ import {
   Inter_700Bold,
 } from "@expo-google-fonts/inter";
 
-import { TaskProvider } from "@/context/TaskContext";
 import { Loading } from "@/components/loading";
+import { colors } from "@/styles/colors";
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
@@ -25,16 +25,23 @@ export default function RootLayout() {
   }
 
   return (
-    <TaskProvider>
+    <>
       <StatusBar barStyle={"light-content"} />
       <Stack
         screenOptions={{
-          headerShown: false,
+          headerShown: true,
+          headerStyle: {
+            backgroundColor: colors.gray[300],
+          },
+          headerShadowVisible: false,
         }}
       >
-        <Stack.Screen name="index" />
-        <Stack.Screen name="addTask" />
+        <Stack.Screen
+          name="index"
+          options={{ title: "Tela inicial", headerShown: false }}
+        />
+        <Stack.Screen name="addTask" options={{ title: "Nova tarefa" }} />
       </Stack>
-    </TaskProvider>
+    </>
   );
 }
