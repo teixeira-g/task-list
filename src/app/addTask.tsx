@@ -1,26 +1,21 @@
 import {
   View,
-  Text,
   StyleSheet,
   Keyboard,
   TouchableWithoutFeedback,
 } from "react-native";
-import { useRouter } from "expo-router";
 import { colors } from "@/styles/colors";
 import { TitleInput, DescInput } from "@/components/Inputs";
-import { ConfirmButton, BackButton } from "@/components/Buttons";
+import { ConfirmButton } from "@/components/Buttons";
 import { fontFamily } from "@/styles/fontFamily";
 
 export default function AddTask() {
-  const router = useRouter();
-
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.container}>
         <TitleInput />
         <DescInput />
         <ConfirmButton />
-        <BackButton onPress={() => router.back()} />
       </View>
     </TouchableWithoutFeedback>
   );
