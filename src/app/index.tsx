@@ -1,6 +1,10 @@
 import React, { useState } from "react";
-import { View, TextInput, Button, Text } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
+import { colors } from "@/styles/colors";
+import { SmallInput } from "@/components/Inputs";
+import { H2DarkText } from "@/styles/global";
+import { AuthButton } from "@/components/Buttons";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -14,15 +18,26 @@ export default function Login() {
   };
 
   return (
-    <View>
-      <Text>Digite seu nome:</Text>
-      <TextInput
-        placeholder="Nome de usuário"
+    <View style={styles.container}>
+      <H2DarkText style={{ fontSize: 30, color: colors.gray[600] }}>
+        Digite seu nome:
+      </H2DarkText>
+      <SmallInput
         value={username}
         onChangeText={setUsername}
-        style={{ borderWidth: 1, padding: 10, marginBottom: 10 }}
+        placeholder={"Nome de usuário"}
       />
-      <Button title="Login" onPress={handleLogin} />
+
+      <AuthButton title="Entrar" onPress={handleLogin} />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: colors.gray[300],
+  },
+});

@@ -5,7 +5,7 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
 } from "react-native";
-import { TitleInput, DescInput } from "@/components/Inputs";
+import { SmallInput, LargeInput } from "@/components/Inputs";
 import { ConfirmButton } from "@/components/Buttons";
 import { useRouter } from "expo-router";
 import { colors } from "@/styles/colors";
@@ -22,8 +22,16 @@ export default function AddTask() {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.container}>
-        <TitleInput value={title} onChangeText={setTitle} />
-        <DescInput value={description} onChangeText={setDescription} />
+        <SmallInput
+          placeholder={"Título"}
+          value={title}
+          onChangeText={setTitle}
+        />
+        <LargeInput
+          placeholder={"Descricão"}
+          value={description}
+          onChangeText={setDescription}
+        />
         <ConfirmButton onPress={handleNavigateBack} />
       </View>
     </TouchableWithoutFeedback>

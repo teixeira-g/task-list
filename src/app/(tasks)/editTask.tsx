@@ -5,7 +5,7 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 import { colors } from "@/styles/colors";
-import { TitleInput, DescInput } from "@/components/Inputs";
+import { SmallInput, LargeInput } from "@/components/Inputs";
 import { DeleteButton, ConfirmButton } from "@/components/Buttons";
 import { fontFamily } from "@/styles/fontFamily";
 import { useState } from "react";
@@ -22,8 +22,8 @@ export default function EditTask() {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.container}>
-        <TitleInput />
-        <DescInput />
+        <SmallInput placeholder={"Título"} />
+        <LargeInput placeholder={"Descricão"} />
         <ConfirmButton onPress={() => router.back()} />
         <DeleteButton onPress={handleDeletePress} />
         <Notification

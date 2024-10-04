@@ -1,6 +1,17 @@
 import { colors } from "@/styles/colors";
 import styled from "styled-components/native";
 
+export const AuthButtonContainer = styled.TouchableOpacity.attrs({
+  activeOpacity: 0.6,
+})`
+  width: 320px;
+  height: 68px;
+  border-radius: 18px;
+  background-color: ${colors.blue};
+  justify-content: center;
+  align-items: center;
+`;
+
 export const AddButtonContainer = styled.TouchableOpacity.attrs({
   activeOpacity: 0.6,
 })`

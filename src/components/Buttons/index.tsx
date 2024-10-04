@@ -1,17 +1,27 @@
 import { Feather } from "@expo/vector-icons";
 import { colors } from "@/styles/colors";
+import { AuthButtonText, H2DarkText } from "@/styles/global";
 import {
+  AuthButtonContainer,
   AddButtonContainer,
   DeleteButtonContainer,
   ConfirmButtonContainer,
 } from "./styles";
-import React from "react";
 
-interface AddButtonProps {
+type Props = {
   onPress: () => void;
-}
+  title: string;
+};
 
-export const AddButton: React.FC<AddButtonProps> = ({ onPress }) => {
+export const AuthButton = ({ onPress, title }: Props) => {
+  return (
+    <AuthButtonContainer onPress={onPress}>
+      <AuthButtonText>{title}</AuthButtonText>
+    </AuthButtonContainer>
+  );
+};
+
+export const AddButton = ({ onPress }: Props) => {
   return (
     <AddButtonContainer onPress={onPress}>
       <Feather name="plus" size={50} color={colors.white} />
@@ -19,7 +29,7 @@ export const AddButton: React.FC<AddButtonProps> = ({ onPress }) => {
   );
 };
 
-export const DeleteButton: React.FC<AddButtonProps> = ({ onPress }) =>{
+export const DeleteButton = ({ onPress }: Props) => {
   return (
     <DeleteButtonContainer onPress={onPress}>
       <Feather name="x" size={50} color={colors.white} />
@@ -27,7 +37,7 @@ export const DeleteButton: React.FC<AddButtonProps> = ({ onPress }) =>{
   );
 };
 
-export const ConfirmButton: React.FC<AddButtonProps> = ({ onPress }) =>{
+export const ConfirmButton = ({ onPress }: Props) => {
   return (
     <ConfirmButtonContainer onPress={onPress}>
       <Feather name="check" size={50} color={colors.white} />
