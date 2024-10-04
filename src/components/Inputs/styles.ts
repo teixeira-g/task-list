@@ -7,8 +7,8 @@ export const SmallInputStyled = styled.TextInput.attrs({
   placeholderTextColor: colors.gray[600],
 })`
   flex-direction: row;
-  height: 68px;
   width: 320px;
+  height: 68px;
   padding: 0 24px;
   margin: 12px 12px 0 12px;
   font-family: ${fontFamily.interSb};
@@ -24,8 +24,8 @@ export const LargeInputStyled = styled.TextInput.attrs({
   placeholderTextColor: colors.gray[600],
 })`
   flex-direction: row;
-  height: 242px;
   width: 320px;
+  height: 242px;
   padding: 24px;
   margin: 24px 12px 0 12px;
   font-family: ${fontFamily.interReg};

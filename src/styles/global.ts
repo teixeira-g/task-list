@@ -45,4 +45,5 @@ export const AuthButtonText = styled.Text`
   font-family: ${fontFamily.interBd};
   color: ${colors.white};
   text-align: center;
+  text-shadow: 1px 1px 2px rgba(16, 44, 57, 0.2);
 `;
