@@ -29,7 +29,7 @@ export default function RootLayout() {
       <StatusBar barStyle={"light-content"} />
       <Stack
         screenOptions={{
-          headerShown: true,
+          headerShown: false,
           headerStyle: {
             backgroundColor: colors.gray[300],
           },
@@ -38,15 +38,15 @@ export default function RootLayout() {
           headerTintColor: colors.gray[600],
           headerTitleStyle: {
             color: colors.gray[700],
+            fontSize: 22,
           },
         }}
       >
         <Stack.Screen
           name="index"
-          options={{ title: "Tela inicial", headerShown: false }}
+          options={{ title: "Login", headerShown: true }}
         />
-        <Stack.Screen name="addTask" options={{ title: "Nova Tarefa" }} />
-        <Stack.Screen name="editTask" options={{ title: "Editar Tarefa" }} />
+        <Stack.Screen name="(tasks)" />
       </Stack>
     </>
   );

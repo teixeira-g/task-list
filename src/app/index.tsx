@@ -1,57 +1,28 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { AddButton } from "@/components/Buttons";
-import { colors } from "@/styles/colors";
-import { Header } from "@/components/Header";
-import { TaskDrawer } from "@/components/TaskDrawer";
-import { useRouter, useLocalSearchParams } from "expo-router";
-import { TaskCard } from "@/components/TaskCard";
-import "@expo/metro-runtime";
+import { View, TextInput, Button, Text } from "react-native";
+import { useRouter } from "expo-router";
 
-interface SearchParams {
-  input?: string;
-}
-
-export default function Screen() {
+export default function Login() {
+  const [username, setUsername] = useState("");
   const router = useRouter();
-  const [isActiveTasksOpen, setActiveTasksOpen] = useState(false);
-  const [isCompletedTasksOpen, setCompletedTasksOpen] = useState(false);
 
-  const { input } = useLocalSearchParams();
-
-  const handleToggleActiveTasks = () => setActiveTasksOpen(!isActiveTasksOpen);
-  const handleToggleCompletedTasks = () =>
-    setCompletedTasksOpen(!isCompletedTasksOpen);
+  const handleLogin = () => {
+    router.replace({
+      pathname: "/home",
+      params: { username },
+    });
+  };
 
   return (
-    <View style={{ flex: 1 }}>
-      <View style={styles.container}>
-        <AddButton onPress={() => router.navigate("/addTask")} />
-        <Header />
-        <TaskDrawer
-          title={"Tarefas em aberto"}
-          onPress={handleToggleActiveTasks}
-          isOpen={isActiveTasksOpen}
-        >
-          <TaskCard title={"Varrer"} description={"Varrer a casa"} isCompleted={false}></TaskCard>
-
-        </TaskDrawer>
-        <TaskDrawer
-          title={"Tarefas concluídas"}
-          onPress={handleToggleCompletedTasks}
-          isOpen={isCompletedTasksOpen}
-        />
-        <View>
-          <Text>Valor do input: {input ? input : "Nenhum valor ainda"}</Text>
-        </View>
-      </View>
+    <View>
+      <Text>Digite seu nome:</Text>
+      <TextInput
+        placeholder="Nome de usuário"
+        value={username}
+        onChangeText={setUsername}
+        style={{ borderWidth: 1, padding: 10, marginBottom: 10 }}
+      />
+      <Button title="Login" onPress={handleLogin} />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.gray[300],
-  },
-});
