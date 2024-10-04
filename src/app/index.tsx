@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import { View, StyleSheet } from "react-native";
+import {
+  View,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from "react-native";
 import { useRouter } from "expo-router";
 import { colors } from "@/styles/colors";
 import { SmallInput } from "@/components/Inputs";
@@ -18,18 +23,21 @@ export default function Login() {
   };
 
   return (
-    <View style={styles.container}>
-      <H2DarkText style={{ fontSize: 30, color: colors.gray[600] }}>
-        Digite seu nome:
-      </H2DarkText>
-      <SmallInput
-        value={username}
-        onChangeText={setUsername}
-        placeholder={"Nome de usuário"}
-      />
-
-      <AuthButton title="Entrar" onPress={handleLogin} />
-    </View>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <View style={styles.container}>
+        <H2DarkText style={{ fontSize: 30, color: colors.gray[600] }}>
+          Digite seu nome
+        </H2DarkText>
+        <SmallInput
+          value={username}
+          onChangeText={setUsername}
+          placeholder={"Nome de usuário"}
+        />
+        <View style={{ marginTop: 20 }}>
+          <AuthButton title="Entrar" onPress={handleLogin} />
+        </View>
+      </View>
+    </TouchableWithoutFeedback>
   );
 }
 

@@ -1,6 +1,6 @@
 import { Feather } from "@expo/vector-icons";
 import { colors } from "@/styles/colors";
-import { AuthButtonText, H2DarkText } from "@/styles/global";
+import { AuthButtonText } from "@/styles/global";
 import {
   AuthButtonContainer,
   AddButtonContainer,
@@ -10,7 +10,7 @@ import {
 
 type Props = {
   onPress: () => void;
-  title: string;
+  title?: string;
 };
 
 export const AuthButton = ({ onPress, title }: Props) => {

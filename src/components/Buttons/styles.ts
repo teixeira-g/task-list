@@ -4,9 +4,9 @@ import styled from "styled-components/native";
 export const AuthButtonContainer = styled.TouchableOpacity.attrs({
   activeOpacity: 0.6,
 })`
-  width: 320px;
-  height: 68px;
-  border-radius: 18px;
+  height: 56px;
+  padding: 0 28px;
+  border-radius: 12px;
   background-color: ${colors.blue};
   justify-content: center;
   align-items: center;

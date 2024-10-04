@@ -1,11 +1,15 @@
 import { HeaderContainer } from "./styles";
 import { H1Text, H2Text } from "@/styles/global";
 
-export const Header = () => {
+type Props = {
+  username: string | string[];
+};
+
+export const Header = ({ username }: Props) => {
   return (
     <HeaderContainer>
       <H1Text>Olá</H1Text>
-      <H2Text style={{ lineHeight: 24 }}>&#123;Usuário&#125;</H2Text>
+      <H2Text style={{ lineHeight: 24 }}>{username}</H2Text>
     </HeaderContainer>
   );
 };

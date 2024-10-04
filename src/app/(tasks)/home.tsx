@@ -13,7 +13,7 @@ export default function Home() {
   const [isActiveTasksOpen, setActiveTasksOpen] = useState(false);
   const [isCompletedTasksOpen, setCompletedTasksOpen] = useState(false);
 
-  const { input } = useLocalSearchParams();
+  const { username, input } = useLocalSearchParams();
 
   const handleToggleActiveTasks = () => setActiveTasksOpen(!isActiveTasksOpen);
   const handleToggleCompletedTasks = () =>
@@ -23,7 +23,7 @@ export default function Home() {
     <View style={{ flex: 1 }}>
       <View style={styles.container}>
         <AddButton onPress={() => router.navigate("/addTask")} />
-        <Header />
+        <Header username={username} />
         <TaskDrawer
           title={"Tarefas em aberto"}
           onPress={handleToggleActiveTasks}
