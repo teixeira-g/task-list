@@ -10,6 +10,7 @@ export const Overlay = styled.TouchableOpacity`
 `;
 
 export const NotificationContainer = styled.View`
+  width: 80%;
   height: 148px;
   padding: 50px 24px 24px;
   background-color: ${colors.gray[200]};
