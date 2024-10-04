@@ -22,13 +22,14 @@ export default function Screen() {
   return (
     <View style={{ flex: 1 }}>
       <View style={styles.container}>
-        <AddButton onPress={() => router.push("/editTask")} />
+        <AddButton onPress={() => router.push("/addTask")} />
         <Header />
         <TaskDrawer
           title={"Tarefas em aberto"}
           onPress={handleToggleActiveTasks}
           isOpen={isActiveTasksOpen}
-        ></TaskDrawer>
+        >
+        </TaskDrawer>
 
         <TaskDrawer
           title={"Tarefas concluídas"}

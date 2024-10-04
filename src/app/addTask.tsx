@@ -15,7 +15,7 @@ export default function AddTask() {
       <View style={styles.container}>
         <TitleInput />
         <DescInput />
-        <ConfirmButton />
+        <ConfirmButton/>
       </View>
     </TouchableWithoutFeedback>
   );
