@@ -12,7 +12,7 @@ import { useState } from "react";
 import { Notification } from "@/components/Notification";
 import { router } from "expo-router";
 
-export default function AddTask() {
+export default function EditTask() {
   const [notificationVisible, setNotificationVisible] = useState(false);
 
   const handleDeletePress = () => {
