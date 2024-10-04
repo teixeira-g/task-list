@@ -1,10 +1,9 @@
-import {StyleSheet, Text, View} from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
 import { AddButton } from "@/components/Buttons";
 import { colors } from "@/styles/colors";
 import { Header } from "@/components/Header";
 import { TaskDrawer } from "@/components/TaskDrawer";
-import { useState } from "react";
-import React from "react";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import { TaskCard } from "@/components/TaskCard";
 
@@ -14,16 +13,14 @@ interface SearchParams {
 
 export default function Screen() {
   const router = useRouter();
+  const [isActiveTasksOpen, setActiveTasksOpen] = useState(false);
+  const [isCompletedTasksOpen, setCompletedTasksOpen] = useState(false);
 
-  const [isActiveTasksOpen, setActiveTasksOpen] = useState<boolean>(false);
-  const [isCompletedTasksOpen, setCompletedTasksOpen] =
-    useState<boolean>(false);
+  const { input } = useLocalSearchParams();
 
   const handleToggleActiveTasks = () => setActiveTasksOpen(!isActiveTasksOpen);
   const handleToggleCompletedTasks = () =>
     setCompletedTasksOpen(!isCompletedTasksOpen);
-
-  const {input} = useLocalSearchParams();
 
   return (
     <View style={{ flex: 1 }}>
@@ -34,16 +31,14 @@ export default function Screen() {
           title={"Tarefas em aberto"}
           onPress={handleToggleActiveTasks}
           isOpen={isActiveTasksOpen}
-        >
-        </TaskDrawer>
-
+        />
         <TaskDrawer
           title={"Tarefas concluídas"}
           onPress={handleToggleCompletedTasks}
           isOpen={isCompletedTasksOpen}
         />
         <View>
-          <Text>Valor do input: {input ? input : 'Nenhum valor ainda'}</Text>
+          <Text>Valor do input: {input ? input : "Nenhum valor ainda"}</Text>
         </View>
       </View>
     </View>

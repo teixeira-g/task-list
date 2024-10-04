@@ -18,7 +18,7 @@ export const Notification = ({ visible, onPress }: Props) => {
       <Overlay onPress={onPress}>
         <NotificationContainer>
           <Banner />
-          <NotificationText>Mensagem Excluída</NotificationText>
+          <NotificationText>Tarefa Excluída</NotificationText>
         </NotificationContainer>
       </Overlay>
     </Modal>
