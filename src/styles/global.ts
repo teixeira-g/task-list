@@ -39,3 +39,10 @@ export const NotificationText = styled.Text`
   color: ${colors.gray[700]};
   text-align: center;
 `;
+
+export const AuthButtonText = styled.Text`
+  font-size: 30px;
+  font-family: ${fontFamily.interBd};
+  color: ${colors.white};
+  text-align: center;
+`;

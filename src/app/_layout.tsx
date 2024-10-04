@@ -9,7 +9,6 @@ import {
 } from "@expo-google-fonts/inter";
 
 import { Loading } from "@/components/loading";
-import { colors } from "@/styles/colors";
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
@@ -30,22 +29,9 @@ export default function RootLayout() {
       <Stack
         screenOptions={{
           headerShown: false,
-          headerStyle: {
-            backgroundColor: colors.gray[300],
-          },
-          headerShadowVisible: false,
-          headerTitleAlign: "center",
-          headerTintColor: colors.gray[600],
-          headerTitleStyle: {
-            color: colors.gray[700],
-            fontSize: 22,
-          },
         }}
       >
-        <Stack.Screen
-          name="index"
-          options={{ title: "Login", headerShown: true }}
-        />
+        <Stack.Screen name="index" />
         <Stack.Screen name="(tasks)" />
       </Stack>
     </>

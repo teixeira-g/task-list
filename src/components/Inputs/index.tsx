@@ -1,14 +1,15 @@
-import { TitleInputStyled, DescInputStyled } from "./styles";
+import { SmallInputStyled, LargeInputStyled } from "./styles";
 
-interface TitleInputProps {
+type Props = {
   value?: string;
   onChangeText?: (value: string) => void;
-}
+  placeholder: string;
+};
 
-export const TitleInput = ({ value, onChangeText }: TitleInputProps) => {
+export const SmallInput = ({ value, onChangeText, placeholder }: Props) => {
   return (
-    <TitleInputStyled
-      placeholder="Título"
+    <SmallInputStyled
+      placeholder={placeholder}
       keyboardType="default"
       value={value}
       onChangeText={onChangeText}
@@ -16,10 +17,10 @@ export const TitleInput = ({ value, onChangeText }: TitleInputProps) => {
   );
 };
 
-export const DescInput = ({ value, onChangeText }: TitleInputProps) => {
+export const LargeInput = ({ value, onChangeText, placeholder }: Props) => {
   return (
-    <DescInputStyled
-      placeholder="Descrição"
+    <LargeInputStyled
+      placeholder={placeholder}
       keyboardType="default"
       multiline={true}
       textBreakStrategy="highQuality"
