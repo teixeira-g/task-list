@@ -1,16 +1,17 @@
+import React from "react";
 import { Feather } from "@expo/vector-icons";
 import { colors } from "@/styles/colors";
 import {
   AddButtonContainer,
-  CloseButtonContainer,
+  DeleteButtonContainer,
   ConfirmButtonContainer,
 } from "./styles";
 
-interface AddButtonProps {
+type ButtonProps = {
   onPress: () => void;
-}
+};
 
-export const AddButton: React.FC<AddButtonProps> = ({ onPress }) => {
+export const AddButton = ({ onPress }: ButtonProps) => {
   return (
     <AddButtonContainer onPress={onPress}>
       <Feather name="plus" size={50} color={colors.white} />
@@ -18,17 +19,17 @@ export const AddButton: React.FC<AddButtonProps> = ({ onPress }) => {
   );
 };
 
-export const CloseButton = () => {
+export const DeleteButton = ({ onPress }: ButtonProps) => {
   return (
-    <CloseButtonContainer>
+    <DeleteButtonContainer onPress={onPress}>
       <Feather name="x" size={50} color={colors.white} />
-    </CloseButtonContainer>
+    </DeleteButtonContainer>
   );
 };
 
-export const ConfirmButton = () => {
+export const ConfirmButton = ({ onPress }: ButtonProps) => {
   return (
-    <ConfirmButtonContainer>
+    <ConfirmButtonContainer onPress={onPress}>
       <Feather name="check" size={50} color={colors.white} />
     </ConfirmButtonContainer>
   );

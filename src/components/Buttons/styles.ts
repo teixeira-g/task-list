@@ -17,7 +17,7 @@ export const AddButtonContainer = styled.TouchableOpacity.attrs({
   z-index: 10;
 `;
 
-export const CloseButtonContainer = styled.TouchableOpacity.attrs({
+export const DeleteButtonContainer = styled.TouchableOpacity.attrs({
   activeOpacity: 0.6,
 })`
   width: 70px;
