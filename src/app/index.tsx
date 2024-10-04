@@ -6,6 +6,7 @@ import { Header } from "@/components/Header";
 import { TaskDrawer } from "@/components/TaskDrawer";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import { TaskCard } from "@/components/TaskCard";
+import "@expo/metro-runtime";
 
 interface SearchParams {
   input?: string;
@@ -25,13 +26,16 @@ export default function Screen() {
   return (
     <View style={{ flex: 1 }}>
       <View style={styles.container}>
-        <AddButton onPress={() => router.push("/addTask")} />
+        <AddButton onPress={() => router.navigate("/addTask")} />
         <Header />
         <TaskDrawer
           title={"Tarefas em aberto"}
           onPress={handleToggleActiveTasks}
           isOpen={isActiveTasksOpen}
-        />
+        >
+          <TaskCard title={"Varrer"} description={"Varrer a casa"} isCompleted={false}></TaskCard>
+
+        </TaskDrawer>
         <TaskDrawer
           title={"Tarefas concluídas"}
           onPress={handleToggleCompletedTasks}

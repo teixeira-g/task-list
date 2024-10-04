@@ -16,7 +16,7 @@ export default function AddTask() {
   const router = useRouter();
 
   const handleNavigateBack = () => {
-    router.replace({
+    router.navigate({
       pathname: "/",
       params: { input: title },
     });
