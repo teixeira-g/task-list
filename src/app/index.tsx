@@ -1,12 +1,16 @@
-import { StyleSheet, View } from "react-native";
+import {StyleSheet, Text, View} from "react-native";
 import { AddButton } from "@/components/Buttons";
 import { colors } from "@/styles/colors";
 import { Header } from "@/components/Header";
 import { TaskDrawer } from "@/components/TaskDrawer";
 import { useState } from "react";
 import React from "react";
-import { useRouter } from "expo-router";
+import { useRouter, useLocalSearchParams } from "expo-router";
 import { TaskCard } from "@/components/TaskCard";
+
+interface SearchParams {
+  input?: string;
+}
 
 export default function Screen() {
   const router = useRouter();
@@ -18,6 +22,8 @@ export default function Screen() {
   const handleToggleActiveTasks = () => setActiveTasksOpen(!isActiveTasksOpen);
   const handleToggleCompletedTasks = () =>
     setCompletedTasksOpen(!isCompletedTasksOpen);
+
+  const {input} = useLocalSearchParams();
 
   return (
     <View style={{ flex: 1 }}>
@@ -36,6 +42,9 @@ export default function Screen() {
           onPress={handleToggleCompletedTasks}
           isOpen={isCompletedTasksOpen}
         />
+        <View>
+          <Text>Valor do input: {input ? input : 'Nenhum valor ainda'}</Text>
+        </View>
       </View>
     </View>
   );

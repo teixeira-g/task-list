@@ -8,14 +8,29 @@ import { colors } from "@/styles/colors";
 import { TitleInput, DescInput } from "@/components/Inputs";
 import { ConfirmButton } from "@/components/Buttons";
 import { fontFamily } from "@/styles/fontFamily";
+import {useState} from "react";
+import {useRouter} from "expo-router";
 
 export default function AddTask() {
+  const [inputValue, setInputValue] = useState("");
+  const router = useRouter();
+
+  const handleNavigateBack = () => {
+    router.back({
+      pathname: '/index',
+      params: {"input": inputValue},
+    });
+  }
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.container}>
-        <TitleInput />
+        <TitleInput
+          value={inputValue}
+          onChangeText={setInputValue}
+        />
         <DescInput />
-        <ConfirmButton/>
+        <ConfirmButton onPress={handleNavigateBack} />
       </View>
     </TouchableWithoutFeedback>
   );

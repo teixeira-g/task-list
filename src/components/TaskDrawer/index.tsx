@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {FlatList, TouchableOpacity, Text, Alert} from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { colors } from "@/styles/colors";
-import { TaskContainer, HeaderContainer } from "./styles";
+import { OpenTasksContainer, CompletedTasksContainer, HeaderContainer } from "./styles";
 import { DescriptionText, H2DarkText } from "@/styles/global";
 import { TaskCard } from "@/components/TaskCard";
 import {set} from "yaml/dist/schema/yaml-1.1/set";
@@ -33,7 +33,7 @@ export const TaskDrawer = ({ title, onPress, isOpen }: Props) => {
   }
 
   return (
-    <TaskContainer>
+    <OpenTasksContainer>
       <HeaderContainer>
         <H2DarkText>{title}</H2DarkText>
 
@@ -67,6 +67,8 @@ export const TaskDrawer = ({ title, onPress, isOpen }: Props) => {
           </DescriptionText>
         )}
       />
-    </TaskContainer>
+    </OpenTasksContainer>
+
+
   );
 };
