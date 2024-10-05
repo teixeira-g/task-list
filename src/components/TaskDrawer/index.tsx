@@ -6,7 +6,10 @@ import {
   View,
   StyleSheet,
 } from "react-native";
-import TaskItem from "@/components/TaskCard"; // Importando o novo componente
+import { Feather } from "@expo/vector-icons";
+
+import TaskItem from "@/components/TaskCard";
+import { Container, Content, Header, HeaderText } from "./styles";
 
 interface Task {
   id: string;
@@ -31,80 +34,79 @@ const TaskManager: React.FC<TaskManagerProps> = ({
     useState<boolean>(false);
 
   return (
-    <View style={styles.container}>
+    <Container>
       <TouchableOpacity
-        style={styles.sectionHeader}
         onPress={() => setIsOpenExpanded(!isOpenExpanded)} // Alterna a seção de tarefas em aberto
       >
-        <Text style={styles.sectionTitle}>Tarefas em aberto</Text>
+        <Header>
+          <HeaderText>Tarefas em aberto</HeaderText>
+          <Feather
+            name={isOpenExpanded ? "chevron-up" : "chevron-down"}
+            size={30}
+          ></Feather>
+        </Header>
       </TouchableOpacity>
       {isOpenExpanded && (
-        <FlatList
-          data={tasks}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => (
-            <TaskItem
-              task={item}
-              onComplete={onComplete} // Passando a função para completar
-              onUncomplete={() => {}} // Sem ação, já que isso não deve ser possível aqui
-              isCompleted={false}
-            />
-          )}
-          ListEmptyComponent={
-            <Text style={styles.emptyMessage}>
-              Você ainda não adicionou nenhuma tarefa
-            </Text>
-          }
-          style={styles.flatList} // Adicionando estilo para o FlatList
-        />
+        <Content>
+          <FlatList
+            data={tasks}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => (
+              <TaskItem
+                task={item}
+                onComplete={onComplete} // Passando a função para completar
+                onUncomplete={() => {}} // Sem ação, já que isso não deve ser possível aqui
+                isCompleted={false}
+              />
+            )}
+            ListEmptyComponent={
+              <Text style={styles.emptyMessage}>
+                Você ainda não adicionou nenhuma tarefa
+              </Text>
+            }
+            style={styles.flatList} // Adicionando estilo para o FlatList
+          />
+        </Content>
       )}
 
       <TouchableOpacity
-        style={styles.sectionHeader}
         onPress={() => setIsCompletedExpanded(!isCompletedExpanded)} // Alterna a seção de tarefas concluídas
       >
-        <Text style={styles.sectionTitle}>Tarefas concluídas</Text>
+        <Header>
+          <HeaderText>Tarefas concluídas</HeaderText>
+          <Feather
+            name={isCompletedExpanded ? "chevron-up" : "chevron-down"}
+            size={30}
+          ></Feather>
+        </Header>
       </TouchableOpacity>
       {isCompletedExpanded && (
-        <FlatList
-          data={completedTasks}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => (
-            <TaskItem
-              task={item}
-              onComplete={() => {}} // Sem ação, já que isso não deve ser possível aqui
-              onUncomplete={onUncomplete} // Passando a função para desmarcar
-              isCompleted={true}
-            />
-          )}
-          ListEmptyComponent={
-            <Text style={styles.emptyMessage}>
-              Você ainda não concluiu nenhuma tarefa
-            </Text>
-          }
-          style={styles.flatList} // Adicionando estilo para o FlatList
-        />
+        <Content>
+          <FlatList
+            data={completedTasks}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => (
+              <TaskItem
+                task={item}
+                onComplete={() => {}} // Sem ação, já que isso não deve ser possível aqui
+                onUncomplete={onUncomplete} // Passando a função para desmarcar
+                isCompleted={true}
+              />
+            )}
+            ListEmptyComponent={
+              <Text style={styles.emptyMessage}>
+                Você ainda não concluiu nenhuma tarefa
+              </Text>
+            }
+            style={styles.flatList} // Adicionando estilo para o FlatList
+          />
+        </Content>
       )}
-    </View>
+    </Container>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 16,
-    backgroundColor: "#f4f4f4", // Cor de fundo leve
-  },
-  sectionHeader: {
-    backgroundColor: "#ccc", // Cor de fundo do cabeçalho
-    padding: 10,
-    borderRadius: 5,
-    marginBottom: 10,
-  },
-  sectionTitle: {
-    color: "#fff", // Cor do texto do cabeçalho
-    fontSize: 18,
-    fontWeight: "bold",
-  },
   emptyMessage: {
     textAlign: "center",
     color: "#888", // Cor do texto vazio
