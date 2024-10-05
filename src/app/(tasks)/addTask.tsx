@@ -8,16 +8,14 @@ import {
 import { SmallInput, LargeInput } from "@/components/Inputs";
 import { ConfirmButton } from "@/components/Buttons";
 import { useRouter } from "expo-router";
+import { useTasks } from "@/context/TaskContext"; // Importe o hook useTasks
 import { colors } from "@/styles/colors";
 
 export default function AddTask() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const router = useRouter();
-
-  const handleNavigateBack = () => {
-    router.back();
-  };
+  const { addTask } = useTasks();
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -32,7 +30,13 @@ export default function AddTask() {
           value={description}
           onChangeText={setDescription}
         />
-        <ConfirmButton onPress={handleNavigateBack} />
+        <ConfirmButton
+          onPress={() => {
+            const newTaskTitle = "Nova Tarefa"; // Aqui você pode adicionar lógica para pegar o título de uma entrada de texto
+            addTask(newTaskTitle);
+            router.back();
+          }}
+        />
       </View>
     </TouchableWithoutFeedback>
   );

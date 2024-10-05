@@ -9,6 +9,7 @@ import {
 } from "@expo-google-fonts/inter";
 
 import { Loading } from "@/components/loading";
+import { TaskProvider } from "@/context/TaskContext";
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
@@ -24,7 +25,7 @@ export default function RootLayout() {
   }
 
   return (
-    <>
+    <TaskProvider>
       <StatusBar barStyle={"light-content"} />
       <Stack
         screenOptions={{
@@ -34,6 +35,6 @@ export default function RootLayout() {
         <Stack.Screen name="index" />
         <Stack.Screen name="(tasks)" />
       </Stack>
-    </>
+    </TaskProvider>
   );
 }

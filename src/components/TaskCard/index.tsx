@@ -1,64 +1,45 @@
-import { Ionicons } from "@expo/vector-icons";
-import { colors } from "@/styles/colors";
-import { DescriptionText, TitleText } from "@/styles/global";
-import { Border, TaskCardContainer, TextContainer } from "./styles";
-import { TouchableOpacity } from "react-native";
+import React from "react";
+import { View, Text, Button, StyleSheet } from "react-native";
 
-type Props = {
-  title: string;
-  description: string;
+interface TaskItemProps {
+  task: {
+    id: string;
+    title: string;
+  };
+  onComplete: (taskId: string) => void;
+  onUncomplete: (taskId: string) => void;
   isCompleted: boolean;
-  //onToggleTaskStatus: () => void;
-  //onEditTask: () => void;
-};
+}
 
-export const TaskCard = ({
-  title,
-  description,
+const TaskItem: React.FC<TaskItemProps> = ({
+  task,
+  onComplete,
+  onUncomplete,
   isCompleted,
-  onToggleTaskStatus,
-  onEditTask,
-}: Props) => {
+}) => {
   return (
-    <TaskCardContainer>
-      <TouchableOpacity
-        onPress={onToggleTaskStatus}
-        activeOpacity={0.7}
-        hitSlop={{ top: 20, right: 20, bottom: 20, left: 20 }}
-      >
-        <Ionicons
-          name={isCompleted ? "checkmark-circle" : "ellipse-outline"}
-          size={30}
-          color={colors.blue}
-        />
-      </TouchableOpacity>
-      <TextContainer>
-        <TitleText
-          style={{ color: isCompleted ? colors.gray[500] : undefined }}
-        >
-          {title}
-        </TitleText>
-        <DescriptionText
-          style={{ color: isCompleted ? colors.gray[500] : undefined }}
-          numberOfLines={2}
-        >
-          {description}
-        </DescriptionText>
-
-        <Border />
-      </TextContainer>
-      <TouchableOpacity
-        onPress={onEditTask}
-        activeOpacity={0.7}
-        hitSlop={{ top: 20, right: 20, bottom: 20, left: 20 }}
-      >
-        <Ionicons
-          name={"ellipsis-horizontal-circle"}
-          size={26}
-          color={colors.gray[400]}
-          style={{ marginBottom: 5 }}
-        />
-      </TouchableOpacity>
-    </TaskCardContainer>
+    <View style={styles.taskItem}>
+      <Text style={styles.taskText}>{task.title}</Text>
+      {!isCompleted ? (
+        <Button title="Concluir" onPress={() => onComplete(task.id)} />
+      ) : (
+        <Button title="Desmarcar" onPress={() => onUncomplete(task.id)} />
+      )}
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  taskItem: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    padding: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: "#ccc",
+  },
+  taskText: {
+    fontSize: 16,
+  },
+});
+
+export default TaskItem;
