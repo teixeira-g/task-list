@@ -13,7 +13,7 @@ export default function Home() {
   const [isActiveTasksOpen, setActiveTasksOpen] = useState(false);
   const [isCompletedTasksOpen, setCompletedTasksOpen] = useState(false);
 
-  const { username, input } = useLocalSearchParams();
+  const { username } = useLocalSearchParams();
 
   const handleToggleActiveTasks = () => setActiveTasksOpen(!isActiveTasksOpen);
   const handleToggleCompletedTasks = () =>
@@ -24,10 +24,10 @@ export default function Home() {
       <View style={styles.container}>
         <AddButton onPress={() => router.navigate("/addTask")} />
         <Header username={username} />
-            <TaskDrawer></TaskDrawer>
-        <View>
-          <Text>Valor do input: {input ? input : "Nenhum valor ainda"}</Text>
-        </View>
+        <TaskDrawer />
+        <Text>
+          {/* Valor do input: {input ? input : "Nenhum valor ainda"} */}
+        </Text>
       </View>
     </View>
   );

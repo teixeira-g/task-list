@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   StyleSheet,
@@ -6,12 +6,12 @@ import {
   Keyboard,
 } from "react-native";
 import { useRouter } from "expo-router";
-
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { colors } from "@/styles/colors";
 import { H2DarkText, NotificationText } from "@/styles/global";
+import { Loading } from "@/components/loading";
 import { SmallInput } from "@/components/Inputs";
 import { AuthButton } from "@/components/Buttons";
-
 import * as Yup from "yup";
 import { Formik } from "formik";
 
@@ -21,14 +21,45 @@ type LoginFormValues = {
 
 export default function Login() {
   const router = useRouter();
+  const [loading, setLoading] = useState(true);
 
-  const handleLogin = (values: LoginFormValues) => {
+  useEffect(() => {
+    const checkLogin = async () => {
+      const storedUsername = await AsyncStorage.getItem("username");
+      if (storedUsername) {
+        router.replace({
+          pathname: "/home",
+          params: { username: storedUsername },
+        });
+      } else {
+        setLoading(false);
+      }
+    };
+    checkLogin();
+  }, []);
+
+  //Limpa os dados armazenados
+  // useEffect(() => {
+  //   const clearStorage = async () => {
+  //     await AsyncStorage.clear();
+  //     console.log("AsyncStorage limpo");
+  //   };
+  //   clearStorage();
+  // }, []);
+
+  const handleLogin = async (values: LoginFormValues) => {
     const { username } = values;
+    await AsyncStorage.setItem("username", username);
+
     router.replace({
       pathname: "/home",
       params: { username },
     });
   };
+
+  if (loading) {
+    return <Loading />;
+  }
 
   const validationSchema = Yup.object().shape({
     username: Yup.string()
