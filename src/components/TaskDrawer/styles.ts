@@ -1,10 +1,11 @@
 import styled from "styled-components/native";
+import {colors} from "@/styles/colors";
 
 export const Container = styled.View`
   flex: 1;
-  background-color: #e0f0f1;
+  background-color: ${colors.gray[300]};
   margin: 10px;
-  border-radius: 8px;
+  border-radius: 18px;
   overflow: hidden;
 `;
 
@@ -13,8 +14,10 @@ export const Header = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background-color: #b0c4c6;
-  margin-bottom: 5px;
+  background-color: ${colors.white};
+  margin-bottom: 10px;
+  margin-top: 10px;  
+  border-radius: 18px;  
 `;
 
 export const HeaderText = styled.Text`
