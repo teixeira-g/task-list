@@ -7,13 +7,30 @@ import {
 import { colors } from "@/styles/colors";
 import { SmallInput, LargeInput } from "@/components/Inputs";
 import { DeleteButton, ConfirmButton } from "@/components/Buttons";
-import { fontFamily } from "@/styles/fontFamily";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useTasks } from "@/context/TaskContext";
 import { Notification } from "@/components/Notification";
-import { router } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
+
+type LocalSearchParams = {
+  taskId: string;
+};
 
 export default function EditTask() {
+  const { tasks, editTask } = useTasks();
+  const { taskId } = useLocalSearchParams<LocalSearchParams>(); // Receber o id da tarefa pelo router
+
+  const task = tasks.find((t) => t.id === taskId);
+
+  const [title, setTitle] = useState(task?.title || "");
   const [notificationVisible, setNotificationVisible] = useState(false);
+
+  const handleEditPress = () => {
+    if (taskId && title) {
+      editTask(taskId, title);
+      router.back();
+    }
+  };
 
   const handleDeletePress = () => {
     setNotificationVisible(true);
@@ -22,9 +39,13 @@ export default function EditTask() {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.container}>
-        <SmallInput placeholder={"Título"} />
-        <LargeInput placeholder={"Descricão"} />
-        <ConfirmButton onPress={() => router.back()} />
+        <SmallInput
+          placeholder={"Título"}
+          value={title}
+          onChangeText={(text) => setTitle(text)}
+        />
+        <LargeInput placeholder={"Descrição"} />
+        <ConfirmButton onPress={handleEditPress} />
         <DeleteButton onPress={handleDeletePress} />
         <Notification
           visible={notificationVisible}
@@ -42,12 +63,5 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingTop: 25,
     backgroundColor: colors.gray[300],
-  },
-
-  title: {
-    fontFamily: fontFamily.interBd,
-    fontSize: 40,
-    color: colors.white,
-    paddingBottom: 30,
   },
 });

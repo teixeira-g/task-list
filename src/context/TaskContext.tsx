@@ -10,6 +10,7 @@ interface TaskContextData {
   tasks: Task[];
   completedTasks: Task[];
   addTask: (title: string) => void;
+  editTask: (taskId: string, newTitle: string) => void;
   completeTask: (taskId: string) => void;
   uncompleteTask: (taskId: string) => void;
 }
@@ -30,6 +31,14 @@ export const TaskProvider: React.FC<{ children: ReactNode }> = ({
       title,
     };
     setTasks((prevTasks) => [...prevTasks, newTask]);
+  };
+
+  const editTask = (taskId: string, newTitle: string) => {
+    setTasks((prevTasks) =>
+      prevTasks.map((task) =>
+        task.id === taskId ? { ...task, title: newTitle } : task
+      )
+    );
   };
 
   const completeTask = (taskId: string) => {
@@ -55,7 +64,14 @@ export const TaskProvider: React.FC<{ children: ReactNode }> = ({
 
   return (
     <TaskContext.Provider
-      value={{ tasks, completedTasks, addTask, completeTask, uncompleteTask }}
+      value={{
+        tasks,
+        completedTasks,
+        addTask,
+        editTask,
+        completeTask,
+        uncompleteTask,
+      }}
     >
       {children}
     </TaskContext.Provider>

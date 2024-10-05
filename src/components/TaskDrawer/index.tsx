@@ -1,124 +1,118 @@
-import React, { useState, useEffect } from "react";
-import { Text, TouchableOpacity, FlatList, Button } from "react-native";
-import { useRouter, useLocalSearchParams } from "expo-router";
-import { Container, Header, HeaderText, Content, TaskItem } from "./styles";
-import { Feather} from "@expo/vector-icons";
+import React, { useState } from "react";
+import {
+  FlatList,
+  TouchableOpacity,
+  Text,
+  View,
+  StyleSheet,
+} from "react-native";
+import TaskItem from "@/components/TaskCard"; // Importando o novo componente
 
 interface Task {
   id: string;
   title: string;
 }
 
-const TaskManager: React.FC = () => {
-  const [openTasks, setOpenTasks] = useState<Task[]>([
-    { id: "1", title: "Tarefa 1" },
-    { id: "2", title: "Tarefa 2" },
-  ]);
-  const [completedTasks, setCompletedTasks] = useState<Task[]>([]);
+interface TaskManagerProps {
+  tasks: Task[]; // Recebendo tarefas como props
+  completedTasks: Task[]; // Recebendo tarefas concluídas como props
+  onComplete: (taskId: string) => void; // Função para completar tarefas
+  onUncomplete: (taskId: string) => void; // Função para desmarcar tarefas
+}
+
+const TaskManager: React.FC<TaskManagerProps> = ({
+  tasks,
+  completedTasks,
+  onComplete,
+  onUncomplete,
+}) => {
   const [isOpenExpanded, setIsOpenExpanded] = useState<boolean>(false);
   const [isCompletedExpanded, setIsCompletedExpanded] =
     useState<boolean>(false);
 
-  const router = useRouter();
-  const { newTask } = useLocalSearchParams<{ newTask?: string }>(); // Parâmetro da navegação
-
-  useEffect(() => {
-    if (newTask) {
-      addNewTask(newTask);
-    }
-  }, [newTask]);
-
-  // Função para adicionar nova tarefa
-  const addNewTask = (taskTitle: string) => {
-    const newTask: Task = {
-      id: Math.random().toString(),
-      title: taskTitle,
-    };
-    setOpenTasks((prevOpenTasks) => [...prevOpenTasks, newTask]);
-  };
-
-  // Função para marcar tarefa como concluída
-  const completeTask = (taskId: string) => {
-    const taskToMove = openTasks.find((task) => task.id === taskId);
-    if (taskToMove) {
-      setOpenTasks((prevOpenTasks) =>
-        prevOpenTasks.filter((task) => task.id !== taskId)
-      );
-      setCompletedTasks((prevCompletedTasks) => [
-        ...prevCompletedTasks,
-        taskToMove,
-      ]);
-    }
-  };
-
-  // Função para desmarcar tarefa concluída
-  const uncompleteTask = (taskId: string) => {
-    const taskToMove = completedTasks.find((task) => task.id === taskId);
-    if (taskToMove) {
-      setCompletedTasks((prevCompletedTasks) =>
-        prevCompletedTasks.filter((task) => task.id !== taskId)
-      );
-      setOpenTasks((prevOpenTasks) => [...prevOpenTasks, taskToMove]);
-    }
-  };
-
-  const renderTaskItem = ({ item }: { item: Task }, isCompleted = false) => (
-    <TaskItem>
-      <Text>{item.title}</Text>
-      {!isCompleted ? (
-        <Button title="Concluir" onPress={() => completeTask(item.id)} />
-      ) : (
-        <Button title="Desmarcar" onPress={() => uncompleteTask(item.id)} />
-      )}
-    </TaskItem>
-  );
-
   return (
-    <Container>
-
-      <TouchableOpacity onPress={() => setIsOpenExpanded(!isOpenExpanded)}>
-        <Header>
-          <HeaderText>Tarefas em aberto</HeaderText>
-          <Feather name={isOpenExpanded ? "chevron-up" : "chevron-down"} size={30}></Feather>
-        </Header>
+    <View style={styles.container}>
+      <TouchableOpacity
+        style={styles.sectionHeader}
+        onPress={() => setIsOpenExpanded(!isOpenExpanded)} // Alterna a seção de tarefas em aberto
+      >
+        <Text style={styles.sectionTitle}>Tarefas em aberto</Text>
       </TouchableOpacity>
-
       {isOpenExpanded && (
-        <Content>
-          <FlatList
-            data={openTasks}
-            keyExtractor={(item) => item.id}
-            renderItem={(item) => renderTaskItem(item)}
-            ListEmptyComponent={
-              <Text>Você ainda não adicionou nenhuma tarefa</Text>
-            }
-          />
-        </Content>
+        <FlatList
+          data={tasks}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <TaskItem
+              task={item}
+              onComplete={onComplete} // Passando a função para completar
+              onUncomplete={() => {}} // Sem ação, já que isso não deve ser possível aqui
+              isCompleted={false}
+            />
+          )}
+          ListEmptyComponent={
+            <Text style={styles.emptyMessage}>
+              Você ainda não adicionou nenhuma tarefa
+            </Text>
+          }
+          style={styles.flatList} // Adicionando estilo para o FlatList
+        />
       )}
 
       <TouchableOpacity
-        onPress={() => setIsCompletedExpanded(!isCompletedExpanded)}
+        style={styles.sectionHeader}
+        onPress={() => setIsCompletedExpanded(!isCompletedExpanded)} // Alterna a seção de tarefas concluídas
       >
-        <Header>
-          <HeaderText>Tarefas concluídas</HeaderText>
-          <Feather name={isCompletedExpanded ? "chevron-up" : "chevron-down"} size={30}></Feather>
-        </Header>
+        <Text style={styles.sectionTitle}>Tarefas concluídas</Text>
       </TouchableOpacity>
-
       {isCompletedExpanded && (
-        <Content>
-          <FlatList
-            data={completedTasks}
-            keyExtractor={(item) => item.id}
-            renderItem={(item) => renderTaskItem(item, true)}
-            ListEmptyComponent={
-              <Text>Você ainda não concluiu nenhuma tarefa</Text>
-            }
-          />
-        </Content>
+        <FlatList
+          data={completedTasks}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <TaskItem
+              task={item}
+              onComplete={() => {}} // Sem ação, já que isso não deve ser possível aqui
+              onUncomplete={onUncomplete} // Passando a função para desmarcar
+              isCompleted={true}
+            />
+          )}
+          ListEmptyComponent={
+            <Text style={styles.emptyMessage}>
+              Você ainda não concluiu nenhuma tarefa
+            </Text>
+          }
+          style={styles.flatList} // Adicionando estilo para o FlatList
+        />
       )}
-    </Container>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 16,
+    backgroundColor: "#f4f4f4", // Cor de fundo leve
+  },
+  sectionHeader: {
+    backgroundColor: "#ccc", // Cor de fundo do cabeçalho
+    padding: 10,
+    borderRadius: 5,
+    marginBottom: 10,
+  },
+  sectionTitle: {
+    color: "#fff", // Cor do texto do cabeçalho
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  emptyMessage: {
+    textAlign: "center",
+    color: "#888", // Cor do texto vazio
+    padding: 10,
+  },
+  flatList: {
+    maxHeight: 300, // Define uma altura máxima para o FlatList, ajuste conforme necessário
+  },
+});
 
 export default TaskManager;

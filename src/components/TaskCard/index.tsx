@@ -1,3 +1,4 @@
+import { router } from "expo-router";
 import React from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
 
@@ -21,7 +22,18 @@ const TaskItem: React.FC<TaskItemProps> = ({
     <View style={styles.taskItem}>
       <Text style={styles.taskText}>{task.title}</Text>
       {!isCompleted ? (
-        <Button title="Concluir" onPress={() => onComplete(task.id)} />
+        <>
+          <Button title="Concluir" onPress={() => onComplete(task.id)} />
+          <Button
+            title="Editar"
+            onPress={() =>
+              router.push({
+                pathname: "./editTask",
+                params: { taskId: task.id },
+              })
+            }
+          />
+        </>
       ) : (
         <Button title="Desmarcar" onPress={() => onUncomplete(task.id)} />
       )}
