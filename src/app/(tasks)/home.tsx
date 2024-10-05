@@ -1,33 +1,32 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React from "react";
+import { StyleSheet, View } from "react-native";
 import { AddButton } from "@/components/Buttons";
 import { colors } from "@/styles/colors";
 import { Header } from "@/components/Header";
-import TaskDrawer from "@/components/TaskDrawer";
-import { useRouter, useLocalSearchParams } from "expo-router";
-import { TaskCard } from "@/components/TaskCard";
-import "@expo/metro-runtime";
+import TaskManager from "@/components/TaskDrawer";
+import { router, useLocalSearchParams } from "expo-router";
+import { useTasks } from "@/context/TaskContext"; // Importe o hook useTasks
 
 export default function Home() {
-  const router = useRouter();
-  const [isActiveTasksOpen, setActiveTasksOpen] = useState(false);
-  const [isCompletedTasksOpen, setCompletedTasksOpen] = useState(false);
-
   const { username } = useLocalSearchParams();
-
-  const handleToggleActiveTasks = () => setActiveTasksOpen(!isActiveTasksOpen);
-  const handleToggleCompletedTasks = () =>
-    setCompletedTasksOpen(!isCompletedTasksOpen);
+  const { tasks, completedTasks, completeTask, uncompleteTask, addTask } =
+    useTasks();
 
   return (
     <View style={{ flex: 1 }}>
       <View style={styles.container}>
-        <AddButton onPress={() => router.navigate("/addTask")} />
+        <AddButton
+          onPress={() => {
+            router.push("./addTask");
+          }}
+        />
         <Header username={username} />
-        <TaskDrawer />
-        <Text>
-          {/* Valor do input: {input ? input : "Nenhum valor ainda"} */}
-        </Text>
+        <TaskManager
+          tasks={tasks} // Passando as tarefas para o TaskManager
+          completedTasks={completedTasks} // Passando tarefas concluídas
+          onComplete={completeTask} // Passando a função para completar tarefas
+          onUncomplete={uncompleteTask} // Passando a função para desmarcar tarefas
+        />
       </View>
     </View>
   );
