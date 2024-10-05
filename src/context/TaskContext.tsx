@@ -1,40 +1,72 @@
-import { createContext, ReactNode, useContext, useState } from "react";
-import { TaskProps } from "@/utils/types";
+import React, { createContext, useState, ReactNode, useContext } from "react";
 
-type TaskContextProps = {
-  tasks: TaskProps[];
-  addTask: (task: TaskProps) => void;
-};
+// Definir a interface para as tarefas
+interface Task {
+  id: string;
+  title: string;
+}
 
-const TaskContext = createContext<TaskContextProps | undefined>(undefined);
+interface TaskContextData {
+  tasks: Task[];
+  completedTasks: Task[];
+  addTask: (title: string) => void;
+  completeTask: (taskId: string) => void;
+  uncompleteTask: (taskId: string) => void;
+}
 
+// Criar o contexto
+const TaskContext = createContext<TaskContextData | undefined>(undefined);
+
+// Criar um provider para o contexto
 export const TaskProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [tasks, setTasks] = useState<TaskProps[]>([
-    {
-      id: 0,
-      title: "",
-      description: "",
-      isCompleted: false,
-    },
-  ]);
+  const [tasks, setTasks] = useState<Task[]>([]);
+  const [completedTasks, setCompletedTasks] = useState<Task[]>([]);
 
-  const addTask = (task: TaskProps) => {
-    setTasks((prevTasks) => [...prevTasks, task]);
+  const addTask = (title: string) => {
+    const newTask: Task = {
+      id: Math.random().toString(),
+      title,
+    };
+    setTasks((prevTasks) => [...prevTasks, newTask]);
+  };
+
+  const completeTask = (taskId: string) => {
+    const taskToMove = tasks.find((task) => task.id === taskId);
+    if (taskToMove) {
+      setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
+      setCompletedTasks((prevCompletedTasks) => [
+        ...prevCompletedTasks,
+        taskToMove,
+      ]);
+    }
+  };
+
+  const uncompleteTask = (taskId: string) => {
+    const taskToMove = completedTasks.find((task) => task.id === taskId);
+    if (taskToMove) {
+      setCompletedTasks((prevCompletedTasks) =>
+        prevCompletedTasks.filter((task) => task.id !== taskId)
+      );
+      setTasks((prevTasks) => [...prevTasks, taskToMove]);
+    }
   };
 
   return (
-    <TaskContext.Provider value={{ tasks, addTask }}>
+    <TaskContext.Provider
+      value={{ tasks, completedTasks, addTask, completeTask, uncompleteTask }}
+    >
       {children}
     </TaskContext.Provider>
   );
 };
 
-export const useTask = () => {
+// Criar um hook para facilitar o acesso ao contexto
+export const useTasks = (): TaskContextData => {
   const context = useContext(TaskContext);
   if (!context) {
-    throw new Error("useTask must be used within a TaskProvider");
+    throw new Error("useTasks must be used within a TaskProvider");
   }
   return context;
 };
