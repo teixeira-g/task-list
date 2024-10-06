@@ -1,4 +1,11 @@
-import React, { createContext, useState, ReactNode, useContext } from "react";
+import React, {
+  createContext,
+  useState,
+  ReactNode,
+  useContext,
+  useEffect,
+} from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { TaskProps } from "@/utils/types";
 
 // Definir o type para as tarefas
@@ -20,6 +27,40 @@ export const TaskProvider: React.FC<{ children: ReactNode }> = ({
   const [tasks, setTasks] = useState<TaskProps[]>([]);
   const [completedTasks, setCompletedTasks] = useState<TaskProps[]>([]);
 
+  useEffect(() => {
+    const loadTasks = async () => {
+      try {
+        const storedTasks = await AsyncStorage.getItem("@tasks");
+        const storedCompletedTasks = await AsyncStorage.getItem(
+          "@completedTasks"
+        );
+        if (storedTasks) setTasks(JSON.parse(storedTasks));
+        if (storedCompletedTasks)
+          setCompletedTasks(JSON.parse(storedCompletedTasks));
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    loadTasks();
+  }, []);
+
+  useEffect(() => {
+    const saveTasks = async () => {
+      try {
+        await AsyncStorage.setItem("@tasks", JSON.stringify(tasks));
+        await AsyncStorage.setItem(
+          "@completedTasks",
+          JSON.stringify(completedTasks)
+        );
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    saveTasks();
+  }, [tasks, completedTasks]);
+
   const addTask = (title: string) => {
     const newTask: TaskProps = {
       id: Math.random().toString(),
@@ -36,32 +77,36 @@ export const TaskProvider: React.FC<{ children: ReactNode }> = ({
     );
   };
 
+  const deleteTask = (taskId: string) => {
+    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
+    setCompletedTasks((prevTasks) =>
+      prevTasks.filter((task) => task.id !== taskId)
+    );
+  };
+
   const completeTask = (taskId: string) => {
-    const taskToMove = tasks.find((task) => task.id === taskId);
-    if (taskToMove) {
-      setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
-      setCompletedTasks((prevCompletedTasks) => [
-        ...prevCompletedTasks,
-        taskToMove,
-      ]);
-    }
+    setTasks((prevTasks) => {
+      const taskToComplete = prevTasks.find((task) => task.id === taskId);
+      if (taskToComplete) {
+        setCompletedTasks((prevCompletedTasks) => [
+          ...prevCompletedTasks,
+          taskToComplete,
+        ]);
+        return prevTasks.filter((task) => task.id !== taskId);
+      }
+      return prevTasks;
+    });
   };
 
   const uncompleteTask = (taskId: string) => {
-    const taskToMove = completedTasks.find((task) => task.id === taskId);
-    if (taskToMove) {
-      setCompletedTasks((prevCompletedTasks) =>
-        prevCompletedTasks.filter((task) => task.id !== taskId)
-      );
-      setTasks((prevTasks) => [...prevTasks, taskToMove]);
-    }
-  };
-
-  const deleteTask = (taskId: string) => {
-    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
-    setCompletedTasks((prevCompletedTasks) =>
-      prevCompletedTasks.filter((task) => task.id !== taskId)
-    );
+    setCompletedTasks((prevTasks) => {
+      const taskToUncomplete = prevTasks.find((task) => task.id === taskId);
+      if (taskToUncomplete) {
+        setTasks((prevTasks) => [...prevTasks, taskToUncomplete]);
+        return prevTasks.filter((task) => task.id !== taskId);
+      }
+      return prevTasks;
+    });
   };
 
   return (
@@ -70,9 +115,9 @@ export const TaskProvider: React.FC<{ children: ReactNode }> = ({
         tasks,
         completedTasks,
         addTask,
-        editTask,
         completeTask,
         uncompleteTask,
+        editTask,
         deleteTask,
       }}
     >
@@ -81,7 +126,6 @@ export const TaskProvider: React.FC<{ children: ReactNode }> = ({
   );
 };
 
-// Criar um hook para facilitar o acesso ao contexto
 export const useTasks = (): TaskContextData => {
   return useContext(TaskContext) as TaskContextData;
 };
