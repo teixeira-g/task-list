@@ -1,20 +1,16 @@
 import React, { useState } from "react";
-import {
-  FlatList,
-  TouchableOpacity,
-  Text,
-  View,
-  StyleSheet,
-} from "react-native";
+import { FlatList, TouchableOpacity } from "react-native";
 import { Feather } from "@expo/vector-icons";
 
+import { colors } from "@/styles/colors";
 import TaskItem from "@/components/TaskCard";
-import { Container, Content, Header, HeaderText } from "./styles";
+import { Container, Content, Header } from "./styles";
+import { DescriptionText, H2DarkText } from "@/styles/global";
 
-interface Task {
+type Task = {
   id: string;
   title: string;
-}
+};
 
 interface TaskManagerProps {
   tasks: Task[]; // Recebendo tarefas como props
@@ -36,12 +32,14 @@ const TaskManager: React.FC<TaskManagerProps> = ({
   return (
     <Container>
       <TouchableOpacity
+        activeOpacity={0.8}
         onPress={() => setIsOpenExpanded(!isOpenExpanded)} // Alterna a seção de tarefas em aberto
       >
         <Header>
-          <HeaderText>Tarefas em aberto</HeaderText>
+          <H2DarkText>Tarefas em aberto</H2DarkText>
           <Feather
             name={isOpenExpanded ? "chevron-up" : "chevron-down"}
+            color={isOpenExpanded ? colors.gray[500] : colors.gray[600]}
             size={30}
           ></Feather>
         </Header>
@@ -60,22 +58,25 @@ const TaskManager: React.FC<TaskManagerProps> = ({
               />
             )}
             ListEmptyComponent={
-              <Text style={styles.emptyMessage}>
-                Você ainda não adicionou nenhuma tarefa
-              </Text>
+              <DescriptionText style={{ textAlign: "center", padding: 10 }}>
+                Nenhuma tarefa em aberto
+              </DescriptionText>
             }
-            style={styles.flatList} // Adicionando estilo para o FlatList
+            style={{ maxHeight: 300 }} // Adicionando estilo para o FlatList
+            showsVerticalScrollIndicator={false}
           />
         </Content>
       )}
 
       <TouchableOpacity
+        activeOpacity={0.8}
         onPress={() => setIsCompletedExpanded(!isCompletedExpanded)} // Alterna a seção de tarefas concluídas
       >
         <Header>
-          <HeaderText>Tarefas concluídas</HeaderText>
+          <H2DarkText>Tarefas concluídas</H2DarkText>
           <Feather
             name={isCompletedExpanded ? "chevron-up" : "chevron-down"}
+            color={isCompletedExpanded ? colors.gray[500] : colors.gray[600]}
             size={30}
           ></Feather>
         </Header>
@@ -94,27 +95,17 @@ const TaskManager: React.FC<TaskManagerProps> = ({
               />
             )}
             ListEmptyComponent={
-              <Text style={styles.emptyMessage}>
-                Você ainda não concluiu nenhuma tarefa
-              </Text>
+              <DescriptionText style={{ textAlign: "center", padding: 10 }}>
+                Nenhuma tarefa concluída
+              </DescriptionText>
             }
-            style={styles.flatList} // Adicionando estilo para o FlatList
+            style={{ maxHeight: 300 }} // Adicionando estilo para o FlatList
+            showsVerticalScrollIndicator={false}
           />
         </Content>
       )}
     </Container>
   );
 };
-
-const styles = StyleSheet.create({
-  emptyMessage: {
-    textAlign: "center",
-    color: "#888", // Cor do texto vazio
-    padding: 10,
-  },
-  flatList: {
-    maxHeight: 300, // Define uma altura máxima para o FlatList, ajuste conforme necessário
-  },
-});
 
 export default TaskManager;

@@ -7,7 +7,7 @@ import {
 import { colors } from "@/styles/colors";
 import { SmallInput, LargeInput } from "@/components/Inputs";
 import { DeleteButton, ConfirmButton } from "@/components/Buttons";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useTasks } from "@/context/TaskContext";
 import { Notification } from "@/components/Notification";
 import { router, useLocalSearchParams } from "expo-router";
@@ -17,7 +17,7 @@ type LocalSearchParams = {
 };
 
 export default function EditTask() {
-  const { tasks, editTask } = useTasks();
+  const { tasks, editTask, deleteTask } = useTasks(); // Importar deleteTask do contexto
   const { taskId } = useLocalSearchParams<LocalSearchParams>(); // Receber o id da tarefa pelo router
 
   const task = tasks.find((t) => t.id === taskId);
@@ -33,7 +33,8 @@ export default function EditTask() {
   };
 
   const handleDeletePress = () => {
-    setNotificationVisible(true);
+    deleteTask(taskId); // Deletar a tarefa do contexto
+    router.back(); // Voltar para a tela anterior após deletar
   };
 
   return (
@@ -47,6 +48,7 @@ export default function EditTask() {
         <LargeInput placeholder={"Descrição"} />
         <ConfirmButton onPress={handleEditPress} />
         <DeleteButton onPress={handleDeletePress} />
+        {/* Chama handleDeletePress */}
         <Notification
           visible={notificationVisible}
           onPress={() => router.back()}

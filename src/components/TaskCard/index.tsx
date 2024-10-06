@@ -1,6 +1,10 @@
-import { router } from "expo-router";
 import React from "react";
-import { View, Text, Button, StyleSheet } from "react-native";
+import { View, Button, StyleSheet } from "react-native";
+import { router } from "expo-router";
+
+import { colors } from "@/styles/colors";
+import { TitleText } from "@/styles/global";
+import { TaskItemContainer } from "./styles";
 
 interface TaskItemProps {
   task: {
@@ -19,8 +23,8 @@ const TaskItem: React.FC<TaskItemProps> = ({
   isCompleted,
 }) => {
   return (
-    <View style={styles.taskItem}>
-      <Text style={styles.taskText}>{task.title}</Text>
+    <TaskItemContainer>
+      <TitleText>{task.title}</TitleText>
       {!isCompleted ? (
         <>
           <Button title="Concluir" onPress={() => onComplete(task.id)} />
@@ -35,23 +39,21 @@ const TaskItem: React.FC<TaskItemProps> = ({
           />
         </>
       ) : (
-        <Button title="Desmarcar" onPress={() => onUncomplete(task.id)} />
+        <>
+          <Button title="Desmarcar" onPress={() => onUncomplete(task.id)} />
+          <Button
+            title="Editar"
+            onPress={() =>
+              router.push({
+                pathname: "./editTask",
+                params: { taskId: task.id },
+              })
+            }
+          />
+        </>
       )}
-    </View>
+    </TaskItemContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  taskItem: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    padding: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: "#ccc",
-  },
-  taskText: {
-    fontSize: 16,
-  },
-});
 
 export default TaskItem;
