@@ -35,7 +35,7 @@ export default function EditTask() {
 
   const handleDeletePress = () => {
     deleteTask(taskId);
-    router.back();
+    setNotificationVisible(true);
   };
 
   return (

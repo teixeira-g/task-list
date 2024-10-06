@@ -2,7 +2,9 @@ import styled from "styled-components/native";
 
 import { colors } from "@/styles/colors";
 
-export const Overlay = styled.TouchableOpacity`
+export const Overlay = styled.TouchableOpacity.attrs({
+  activeOpacity: 1,
+})`
   flex: 1;
   background-color: rgba(0, 0, 0, 0.6);
   justify-content: center;
