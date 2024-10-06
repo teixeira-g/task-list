@@ -4,13 +4,14 @@ import { router } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 
 import { colors } from "@/styles/colors";
-import { TitleText } from "@/styles/global";
+import {DescriptionText, TitleText} from "@/styles/global";
 import { TaskItemContainer } from "./styles";
 
 type TaskItemProps = {
   task: {
     id: string;
     title: string;
+    description: string;
   };
   onComplete: (taskId: string) => void;
   onUncomplete: (taskId: string) => void;
@@ -45,6 +46,8 @@ export const TaskItem: React.FC<TaskItemProps> = ({
             >
                 {task.title}
             </TitleText>
+
+
 
             <TouchableOpacity
                 activeOpacity={0.7}

@@ -42,15 +42,11 @@ export default function AddTask() {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.container}>
         <SmallInput
-          placeholder={"Título"} // Placeholder do input
+          placeholder={"Digite aqui sua tarefa"} // Placeholder do input
           value={title} // Valor do input
           onChangeText={setTitle} // Atualiza o valor do título
         />
-        <LargeInput
-          placeholder={"Descrição"} // Placeholder para a descrição (opcional)
-          value={description} // Valor do input de descrição
-          onChangeText={setDescription} // Atualiza o valor da descrição
-        />
+
         <ConfirmButton
           onPress={handleConfirm} // Chama a função handleConfirm ao clicar no botão
         />
@@ -64,7 +60,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-start",
     alignItems: "center",
-    paddingTop: 25,
+    paddingTop: 100,
     backgroundColor: colors.gray[300],
   },
 });

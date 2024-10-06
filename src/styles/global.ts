@@ -33,6 +33,7 @@ export const DescriptionText = styled.Text`
   font-size: 14px;
   font-family: ${fontFamily.interMd};
   color: ${colors.gray[600]};
+  flex-shrink: 1;  
 `;
 
 export const NotificationText = styled.Text`

@@ -8,7 +8,7 @@ export const SmallInputStyled = styled.TextInput.attrs({
 })`
   flex-direction: row;
   width: 320px;
-  height: 68px;
+  height: 120px;
   padding: 0 24px;
   margin: 12px 12px 0 12px;
   font-family: ${fontFamily.interSb};

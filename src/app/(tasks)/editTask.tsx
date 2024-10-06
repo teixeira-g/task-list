@@ -41,7 +41,7 @@ export default function EditTask() {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.container}>
         <SmallInput
-          placeholder={"Título"}
+          placeholder={"Digite sua tarefa"}
           value={title}
           onChangeText={(text) => setTitle(text)}
         />
