@@ -22,6 +22,7 @@ export const Header = styled.View`
 `;
 
 export const Content = styled.View`
+  flex: 1;
   padding: 15px;
   background-color: ${colors.gray[150]};
   border-radius: 18px;

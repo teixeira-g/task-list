@@ -45,7 +45,11 @@ export default function EditTask() {
           value={title}
           onChangeText={(text) => setTitle(text)}
         />
-        <LargeInput placeholder={"Descrição"} />
+        {/* <LargeInput
+          placeholder={"Descrição"} // Placeholder para a descrição (opcional)
+          value={description} // Valor do input de descrição
+          onChangeText={setDescription} // Atualiza o valor da descrição
+        /> */}
         <ConfirmButton onPress={handleEditPress} />
         <DeleteButton onPress={handleDeletePress} />
         {/* Chama handleDeletePress */}

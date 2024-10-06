@@ -3,7 +3,7 @@ import { FlatList, TouchableOpacity } from "react-native";
 import { Feather } from "@expo/vector-icons";
 
 import { colors } from "@/styles/colors";
-import TaskItem from "@/components/TaskCard";
+import { TaskItem } from "@/components/TaskCard";
 import { Container, Content, Header } from "./styles";
 import { DescriptionText, H2DarkText } from "@/styles/global";
 
@@ -12,14 +12,14 @@ type Task = {
   title: string;
 };
 
-interface TaskManagerProps {
+type TaskManagerProps = {
   tasks: Task[]; // Recebendo tarefas como props
   completedTasks: Task[]; // Recebendo tarefas concluídas como props
   onComplete: (taskId: string) => void; // Função para completar tarefas
   onUncomplete: (taskId: string) => void; // Função para desmarcar tarefas
-}
+};
 
-const TaskManager: React.FC<TaskManagerProps> = ({
+export const TaskManager: React.FC<TaskManagerProps> = ({
   tasks,
   completedTasks,
   onComplete,
@@ -62,8 +62,6 @@ const TaskManager: React.FC<TaskManagerProps> = ({
                 Nenhuma tarefa em aberto
               </DescriptionText>
             }
-            style={{ maxHeight: 300 }} // Adicionando estilo para o FlatList
-            showsVerticalScrollIndicator={false}
           />
         </Content>
       )}
@@ -99,13 +97,9 @@ const TaskManager: React.FC<TaskManagerProps> = ({
                 Nenhuma tarefa concluída
               </DescriptionText>
             }
-            style={{ maxHeight: 300 }} // Adicionando estilo para o FlatList
-            showsVerticalScrollIndicator={false}
           />
         </Content>
       )}
     </Container>
   );
 };
-
-export default TaskManager;
