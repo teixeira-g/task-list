@@ -5,36 +5,32 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
 } from "react-native";
-import { SmallInput, LargeInput } from "@/components/Inputs";
-import { ConfirmButton } from "@/components/Buttons";
+import { Alert } from "react-native";
 import { useRouter } from "expo-router";
-import { useTasks } from "@/context/TaskContext"; // Importe o hook useTasks
+
 import { colors } from "@/styles/colors";
-import { Alert } from 'react-native';
+import { SmallInput } from "@/components/Inputs";
+import { ConfirmButton } from "@/components/Buttons";
+import { useTasks } from "@/context/TaskContext";
 
 export default function AddTask() {
-  const [title, setTitle] = useState(""); // Estado para armazenar o título
-  const [description, setDescription] = useState(""); // Estado para armazenar a descrição (opcional)
+  const [title, setTitle] = useState("");
   const router = useRouter();
-  const { addTask } = useTasks(); // Acesso à função addTask do contexto
+  const { addTask } = useTasks();
 
   // Função para confirmar a adição da tarefa
   const handleConfirm = () => {
     if (title.trim()) {
       // Verifica se o título não está vazio
-      addTask(title); // Adiciona a tarefa com o título fornecido
-      router.back(); // Navega de volta à tela anterior/v
+      addTask(title);
+      router.back();
     } else {
       // Pode exibir uma mensagem de erro ou feedback se o título estiver vazio
       Alert.alert(
-          "Ops", // Título do alerta
-          "O título não pode estar vazio", // Mensagem do alerta
-          [
-            { text: "OK", onPress: () => console.log("Alerta de título vazio") }
-          ]
+        "Ops", // Título do alerta
+        "O título não pode estar vazio", // Mensagem do alerta
+        [{ text: "OK", onPress: () => console.log("Alerta de título vazio") }]
       );
-      //console.log("O título da tarefa não pode estar vazio.");
-
     }
   };
 
@@ -42,14 +38,12 @@ export default function AddTask() {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.container}>
         <SmallInput
-          placeholder={"Digite aqui sua tarefa"} // Placeholder do input
-          value={title} // Valor do input
-          onChangeText={setTitle} // Atualiza o valor do título
+          placeholder={"Digite aqui sua tarefa"}
+          value={title}
+          onChangeText={setTitle}
         />
 
-        <ConfirmButton
-          onPress={handleConfirm} // Chama a função handleConfirm ao clicar no botão
-        />
+        <ConfirmButton onPress={handleConfirm} />
       </View>
     </TouchableWithoutFeedback>
   );

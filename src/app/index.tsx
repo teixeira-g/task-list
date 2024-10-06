@@ -7,13 +7,15 @@ import {
 } from "react-native";
 import { useRouter } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+
+import * as Yup from "yup";
+import { Formik } from "formik";
+
 import { colors } from "@/styles/colors";
 import { H2DarkText, NotificationText } from "@/styles/global";
 import { Loading } from "@/components/loading";
 import { SmallInput } from "@/components/Inputs";
-import { AuthButton } from "@/components/Buttons";
-import * as Yup from "yup";
-import { Formik } from "formik";
+import { LoginButton } from "@/components/Buttons";
 
 type LoginFormValues = {
   username: string;
@@ -102,7 +104,7 @@ export default function Login() {
                 </NotificationText>
               )}
               <View style={{ marginTop: 20 }}>
-                <AuthButton title="Entrar" onPress={handleSubmit} />
+                <LoginButton title="Entrar" onPress={handleSubmit} />
               </View>
             </>
           )}

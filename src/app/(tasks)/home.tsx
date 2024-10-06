@@ -4,14 +4,13 @@ import { router, useLocalSearchParams } from "expo-router";
 
 import { colors } from "@/styles/colors";
 import { Header } from "@/components/Header";
-import { TaskManager } from "@/components/TaskDrawer";
+import { TaskDrawer } from "@/components/TaskDrawer";
 import { AddButton } from "@/components/Buttons";
 import { useTasks } from "@/context/TaskContext";
 
 export default function Home() {
   const { username } = useLocalSearchParams();
-  const { tasks, completedTasks, completeTask, uncompleteTask, addTask } =
-    useTasks();
+  const { tasks, completedTasks, completeTask, uncompleteTask } = useTasks();
 
   return (
     <View style={styles.container}>
@@ -21,11 +20,11 @@ export default function Home() {
         }}
       />
       <Header username={username} />
-      <TaskManager
-        tasks={tasks} // Passando as tarefas para o TaskManager
-        completedTasks={completedTasks} // Passando tarefas concluídas
-        onComplete={completeTask} // Passando a função para completar tarefas
-        onUncomplete={uncompleteTask} // Passando a função para desmarcar tarefas
+      <TaskDrawer
+        tasks={tasks}
+        completedTasks={completedTasks}
+        onComplete={completeTask}
+        onUncomplete={uncompleteTask}
       />
     </View>
   );
