@@ -1,5 +1,6 @@
 import { TextInputProps } from "react-native";
 import { SmallInputStyled, LargeInputStyled } from "./styles";
+import React from "react";
 
 type Props = TextInputProps & {
   value: string;

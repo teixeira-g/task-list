@@ -10,6 +10,7 @@ import { ConfirmButton } from "@/components/Buttons";
 import { useRouter } from "expo-router";
 import { useTasks } from "@/context/TaskContext"; // Importe o hook useTasks
 import { colors } from "@/styles/colors";
+import { Alert } from 'react-native';
 
 export default function AddTask() {
   const [title, setTitle] = useState(""); // Estado para armazenar o título
@@ -22,10 +23,18 @@ export default function AddTask() {
     if (title.trim()) {
       // Verifica se o título não está vazio
       addTask(title); // Adiciona a tarefa com o título fornecido
-      router.back(); // Navega de volta à tela anterior
+      router.back(); // Navega de volta à tela anterior/v
     } else {
       // Pode exibir uma mensagem de erro ou feedback se o título estiver vazio
-      console.log("O título da tarefa não pode estar vazio.");
+      Alert.alert(
+          "Ops", // Título do alerta
+          "O título não pode estar vazio", // Mensagem do alerta
+          [
+            { text: "OK", onPress: () => console.log("Alerta de título vazio") }
+          ]
+      );
+      //console.log("O título da tarefa não pode estar vazio.");
+
     }
   };
 
