@@ -1,4 +1,4 @@
-import { Modal, StatusBar, TouchableOpacity } from "react-native";
+import { Modal, StatusBar } from "react-native";
 
 import { Banner, NotificationContainer, Overlay } from "./styles";
 import { NotificationText } from "@/styles/global";

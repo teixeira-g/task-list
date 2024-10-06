@@ -1,9 +1,9 @@
 import { Feather } from "@expo/vector-icons";
 
 import { colors } from "@/styles/colors";
-import { AuthButtonText } from "@/styles/global";
+import { LoginButtonText } from "@/styles/global";
 import {
-  AuthButtonContainer,
+  LoginButtonContainer,
   AddButtonContainer,
   DeleteButtonContainer,
   ConfirmButtonContainer,
@@ -14,11 +14,11 @@ type Props = {
   title?: string;
 };
 
-export const AuthButton = ({ onPress, title }: Props) => {
+export const LoginButton = ({ onPress, title }: Props) => {
   return (
-    <AuthButtonContainer onPress={onPress}>
-      <AuthButtonText>{title}</AuthButtonText>
-    </AuthButtonContainer>
+    <LoginButtonContainer onPress={onPress}>
+      <LoginButtonText>{title}</LoginButtonText>
+    </LoginButtonContainer>
   );
 };
 

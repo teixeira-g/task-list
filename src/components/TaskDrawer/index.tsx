@@ -3,23 +3,19 @@ import { FlatList, TouchableOpacity } from "react-native";
 import { Feather } from "@expo/vector-icons";
 
 import { colors } from "@/styles/colors";
-import { TaskItem } from "@/components/TaskCard";
+import { TaskCard } from "@/components/TaskCard";
 import { Container, Content, Header } from "./styles";
 import { DescriptionText, H2DarkText } from "@/styles/global";
+import { TaskProps } from "@/utils/types";
 
-type Task = {
-  id: string;
-  title: string;
+type TaskDrawerProps = {
+  tasks: TaskProps[];
+  completedTasks: TaskProps[];
+  onComplete: (taskId: string) => void;
+  onUncomplete: (taskId: string) => void;
 };
 
-type TaskManagerProps = {
-  tasks: Task[]; // Recebendo tarefas como props
-  completedTasks: Task[]; // Recebendo tarefas concluídas como props
-  onComplete: (taskId: string) => void; // Função para completar tarefas
-  onUncomplete: (taskId: string) => void; // Função para desmarcar tarefas
-};
-
-export const TaskManager: React.FC<TaskManagerProps> = ({
+export const TaskDrawer: React.FC<TaskDrawerProps> = ({
   tasks,
   completedTasks,
   onComplete,
@@ -33,7 +29,7 @@ export const TaskManager: React.FC<TaskManagerProps> = ({
     <Container>
       <TouchableOpacity
         activeOpacity={0.8}
-        onPress={() => setIsOpenExpanded(!isOpenExpanded)} // Alterna a seção de tarefas em aberto
+        onPress={() => setIsOpenExpanded(!isOpenExpanded)}
       >
         <Header>
           <H2DarkText>Tarefas em aberto</H2DarkText>
@@ -50,10 +46,10 @@ export const TaskManager: React.FC<TaskManagerProps> = ({
             data={tasks}
             keyExtractor={(item) => item.id}
             renderItem={({ item }) => (
-              <TaskItem
+              <TaskCard
                 task={item}
-                onComplete={onComplete} // Passando a função para completar
-                onUncomplete={() => {}} // Sem ação, já que isso não deve ser possível aqui
+                onComplete={onComplete}
+                onUncomplete={() => {}}
                 isCompleted={false}
               />
             )}
@@ -68,7 +64,7 @@ export const TaskManager: React.FC<TaskManagerProps> = ({
 
       <TouchableOpacity
         activeOpacity={0.8}
-        onPress={() => setIsCompletedExpanded(!isCompletedExpanded)} // Alterna a seção de tarefas concluídas
+        onPress={() => setIsCompletedExpanded(!isCompletedExpanded)}
       >
         <Header>
           <H2DarkText>Tarefas concluídas</H2DarkText>
@@ -85,10 +81,10 @@ export const TaskManager: React.FC<TaskManagerProps> = ({
             data={completedTasks}
             keyExtractor={(item) => item.id}
             renderItem={({ item }) => (
-              <TaskItem
+              <TaskCard
                 task={item}
-                onComplete={() => {}} // Sem ação, já que isso não deve ser possível aqui
-                onUncomplete={onUncomplete} // Passando a função para desmarcar
+                onComplete={() => {}}
+                onUncomplete={onUncomplete}
                 isCompleted={true}
               />
             )}

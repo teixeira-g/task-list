@@ -1,7 +1,7 @@
 import { colors } from "@/styles/colors";
 import styled from "styled-components/native";
 
-export const AuthButtonContainer = styled.TouchableOpacity.attrs({
+export const LoginButtonContainer = styled.TouchableOpacity.attrs({
   activeOpacity: 0.6,
 })`
   height: 56px;

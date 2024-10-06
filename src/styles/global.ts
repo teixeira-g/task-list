@@ -25,15 +25,15 @@ export const TitleText = styled.Text`
   font-size: 18px;
   font-family: ${fontFamily.interSb};
   color: ${colors.gray[700]};
-  flex-shrink: 1;  
-  margin-left: 10px;  
+  flex-shrink: 1;
+  margin-left: 10px;
 `;
 
 export const DescriptionText = styled.Text`
   font-size: 14px;
   font-family: ${fontFamily.interMd};
   color: ${colors.gray[600]};
-  flex-shrink: 1;  
+  flex-shrink: 1;
 `;
 
 export const NotificationText = styled.Text`
@@ -43,7 +43,7 @@ export const NotificationText = styled.Text`
   text-align: center;
 `;
 
-export const AuthButtonText = styled.Text`
+export const LoginButtonText = styled.Text`
   font-size: 30px;
   font-family: ${fontFamily.interBd};
   color: ${colors.white};

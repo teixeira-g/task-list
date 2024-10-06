@@ -5,24 +5,22 @@ import { TaskProps } from "@/utils/types";
 type TaskContextData = {
   tasks: TaskProps[];
   completedTasks: TaskProps[];
-  addTask: (title: string, description: string) => void;
+  addTask: (title: string) => void;
   completeTask: (taskId: string) => void;
   uncompleteTask: (taskId: string) => void;
   editTask: (taskId: string, newTitle: string) => void;
   deleteTask: (taskId: string) => void;
 };
 
-// Criar o contexto
 const TaskContext = createContext<TaskContextData | undefined>(undefined);
 
-// Criar um provider para o contexto
 export const TaskProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [tasks, setTasks] = useState<TaskProps[]>([]);
   const [completedTasks, setCompletedTasks] = useState<TaskProps[]>([]);
 
-  const addTask = (title: string, description: string) => {
+  const addTask = (title: string) => {
     const newTask: TaskProps = {
       id: Math.random().toString(),
       title,
