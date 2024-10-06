@@ -21,22 +21,9 @@ export const Header = styled.View`
   border-radius: 18px;
 `;
 
-export const HeaderText = styled.Text`
-  font-size: 18px;
-  font-weight: bold;
-`;
-
 export const Content = styled.View`
+  flex: 1;
   padding: 15px;
-  background-color: #dfe7e9;
+  background-color: ${colors.gray[150]};
   border-radius: 18px;
-`;
-
-export const TaskItem = styled.View`
-  padding: 10px;
-  border-bottom-width: 1px;
-  border-bottom-color: #ccc;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
 `;

@@ -1,8 +1,13 @@
-import { router } from "expo-router";
 import React from "react";
-import { View, Text, Button, StyleSheet } from "react-native";
+import { TouchableOpacity } from "react-native";
+import { router } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
 
-interface TaskItemProps {
+import { colors } from "@/styles/colors";
+import { TitleText } from "@/styles/global";
+import { TaskItemContainer } from "./styles";
+
+type TaskItemProps = {
   task: {
     id: string;
     title: string;
@@ -10,48 +15,80 @@ interface TaskItemProps {
   onComplete: (taskId: string) => void;
   onUncomplete: (taskId: string) => void;
   isCompleted: boolean;
-}
+};
 
-const TaskItem: React.FC<TaskItemProps> = ({
+export const TaskItem: React.FC<TaskItemProps> = ({
   task,
   onComplete,
   onUncomplete,
   isCompleted,
 }) => {
   return (
-    <View style={styles.taskItem}>
-      <Text style={styles.taskText}>{task.title}</Text>
+    <TaskItemContainer>
+      <TitleText
+        style={[
+          isCompleted
+            ? { color: colors.gray[500], textDecorationLine: "line-through" }
+            : undefined,
+        ]}
+      >
+        {task.title}
+      </TitleText>
       {!isCompleted ? (
         <>
-          <Button title="Concluir" onPress={() => onComplete(task.id)} />
-          <Button
-            title="Editar"
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={() => onComplete(task.id)}
+            hitSlop={{ top: 20, right: 20, bottom: 20, left: 20 }}
+          >
+            <Ionicons name={"ellipse-outline"} size={32} color={colors.blue} />
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            activeOpacity={0.7}
             onPress={() =>
               router.push({
                 pathname: "./editTask",
                 params: { taskId: task.id },
               })
             }
-          />
+            hitSlop={{ top: 20, right: 20, bottom: 20, left: 20 }}
+          >
+            <Ionicons
+              name={"ellipsis-horizontal-circle"}
+              size={32}
+              color={colors.gray[400]}
+            />
+          </TouchableOpacity>
         </>
       ) : (
-        <Button title="Desmarcar" onPress={() => onUncomplete(task.id)} />
+        <>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={() => onUncomplete(task.id)}
+            hitSlop={{ top: 20, right: 20, bottom: 20, left: 20 }}
+          >
+            <Ionicons name={"checkmark-circle"} size={32} color={colors.blue} />
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={() =>
+              router.push({
+                pathname: "./editTask",
+                params: { taskId: task.id },
+              })
+            }
+            hitSlop={{ top: 20, right: 20, bottom: 20, left: 20 }}
+          >
+            <Ionicons
+              name={"ellipsis-horizontal-circle"}
+              size={32}
+              color={colors.gray[400]}
+            />
+          </TouchableOpacity>
+        </>
       )}
-    </View>
+    </TaskItemContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  taskItem: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    padding: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: "#ccc",
-  },
-  taskText: {
-    fontSize: 16,
-  },
-});
-
-export default TaskItem;

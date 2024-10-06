@@ -1,19 +1,16 @@
 import React, { createContext, useState, ReactNode, useContext } from "react";
+import { TaskProps } from "@/utils/types";
 
-// Definir a interface para as tarefas
-interface Task {
-  id: string;
-  title: string;
-}
-
-interface TaskContextData {
-  tasks: Task[];
-  completedTasks: Task[];
+// Definir o type para as tarefas
+type TaskContextData = {
+  tasks: TaskProps[];
+  completedTasks: TaskProps[];
   addTask: (title: string) => void;
-  editTask: (taskId: string, newTitle: string) => void;
   completeTask: (taskId: string) => void;
   uncompleteTask: (taskId: string) => void;
-}
+  editTask: (taskId: string, newTitle: string) => void;
+  deleteTask: (taskId: string) => void;
+};
 
 // Criar o contexto
 const TaskContext = createContext<TaskContextData | undefined>(undefined);
@@ -22,11 +19,11 @@ const TaskContext = createContext<TaskContextData | undefined>(undefined);
 export const TaskProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [tasks, setTasks] = useState<Task[]>([]);
-  const [completedTasks, setCompletedTasks] = useState<Task[]>([]);
+  const [tasks, setTasks] = useState<TaskProps[]>([]);
+  const [completedTasks, setCompletedTasks] = useState<TaskProps[]>([]);
 
   const addTask = (title: string) => {
-    const newTask: Task = {
+    const newTask: TaskProps = {
       id: Math.random().toString(),
       title,
     };
@@ -62,6 +59,13 @@ export const TaskProvider: React.FC<{ children: ReactNode }> = ({
     }
   };
 
+  const deleteTask = (taskId: string) => {
+    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
+    setCompletedTasks((prevCompletedTasks) =>
+      prevCompletedTasks.filter((task) => task.id !== taskId)
+    );
+  };
+
   return (
     <TaskContext.Provider
       value={{
@@ -71,6 +75,7 @@ export const TaskProvider: React.FC<{ children: ReactNode }> = ({
         editTask,
         completeTask,
         uncompleteTask,
+        deleteTask,
       }}
     >
       {children}
@@ -80,9 +85,5 @@ export const TaskProvider: React.FC<{ children: ReactNode }> = ({
 
 // Criar um hook para facilitar o acesso ao contexto
 export const useTasks = (): TaskContextData => {
-  const context = useContext(TaskContext);
-  if (!context) {
-    throw new Error("useTasks must be used within a TaskProvider");
-  }
-  return context;
+  return useContext(TaskContext) as TaskContextData;
 };

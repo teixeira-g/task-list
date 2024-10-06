@@ -1,11 +1,11 @@
 import { TextInputProps } from "react-native";
 import { SmallInputStyled, LargeInputStyled } from "./styles";
 
-interface Props extends TextInputProps {
-  value?: string;
-  onChangeText?: (value: string) => void;
+type Props = TextInputProps & {
+  value: string;
+  onChangeText: (value: string) => void;
   placeholder: string;
-}
+};
 
 export const SmallInput: React.FC<Props> = ({
   value,
