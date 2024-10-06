@@ -25,6 +25,8 @@ export const TitleText = styled.Text`
   font-size: 18px;
   font-family: ${fontFamily.interSb};
   color: ${colors.gray[700]};
+  flex-shrink: 1;  
+  margin-left: 10px;  
 `;
 
 export const DescriptionText = styled.Text`
