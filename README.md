@@ -6,15 +6,14 @@
     <img src="https://img.shields.io/badge/react_native-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB" alt="Badge React Native">
 </div>
 
-Um aplicativo simples para gerenciamento de tarefas diárias, criado com **React Native (Expo)**, utilizando **Async Storage** para armazenamento local e com o design do protótipo desenvolvido no **Figma**.
+Um aplicativo simples para gerenciamento de tarefas diárias, criado com **React Native (Expo)**. O projeto utiliza **Async Storage** para armazenamento local e segue o design do protótipo desenvolvido no **Figma**. Utiliza o **Expo Router** para navegação e gerenciamento de parâmetros, e **Formik** e **Yup** para validação dos campos.
 
 ## Pré-requisitos
 
 Para rodar o projeto, você precisará das seguintes ferramentas e versões:
 
 - **Node.js: 16.x ou superior**
-- **npm: 8.x ou superior**
-- **Yarn: 1.x ou superior**
+- **npm: 8.x ou superior / Yarn: 1.x ou superior**
 
 ## Instalação
 
