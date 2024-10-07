@@ -33,7 +33,7 @@ export const AddButton = ({ onPress }: Props) => {
 export const DeleteButton = ({ onPress }: Props) => {
   return (
     <DeleteButtonContainer onPress={onPress}>
-      <Feather name="trash" size={40} color={colors.white} />
+      <Feather name="trash-2" size={40} color={colors.white} />
     </DeleteButtonContainer>
   );
 };
