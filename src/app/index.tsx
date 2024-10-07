@@ -76,7 +76,7 @@ export default function Login() {
       <View
         style={[
           styles.container,
-          isFocused ? { paddingBottom: 130 } : undefined,
+          isFocused ? { paddingBottom: 100 } : undefined,
         ]}
       >
         <H2DarkText style={{ fontSize: 30, color: colors.gray[600] }}>
