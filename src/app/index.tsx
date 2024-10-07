@@ -25,6 +25,8 @@ export default function Login() {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
 
+  const [isFocused, setIsFocused] = useState(false);
+
   useEffect(() => {
     const checkLogin = async () => {
       const storedUsername = await AsyncStorage.getItem("username");
@@ -40,7 +42,7 @@ export default function Login() {
     checkLogin();
   }, []);
 
-  //Limpa os dados armazenados
+  // Limpa os dados armazenados
   // useEffect(() => {
   //   const clearStorage = async () => {
   //     await AsyncStorage.clear();
@@ -71,7 +73,12 @@ export default function Login() {
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <View style={styles.container}>
+      <View
+        style={[
+          styles.container,
+          isFocused ? { paddingBottom: 130 } : undefined,
+        ]}
+      >
         <H2DarkText style={{ fontSize: 30, color: colors.gray[600] }}>
           Digite seu nome
         </H2DarkText>
@@ -91,10 +98,14 @@ export default function Login() {
           }) => (
             <>
               <SmallInput
+                placeholder={"Nome de usuário"}
                 value={values.username}
                 onChangeText={handleChange("username")}
-                onBlur={handleBlur("username")}
-                placeholder={"Nome de usuário"}
+                onBlur={() => {
+                  handleBlur("username");
+                  setIsFocused(false);
+                }}
+                onFocus={() => setIsFocused(true)}
               />
               {errors.username && touched.username && (
                 <NotificationText

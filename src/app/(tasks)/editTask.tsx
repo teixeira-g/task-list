@@ -46,7 +46,7 @@ export default function EditTask() {
       <View
         style={[
           styles.container,
-          isFocused ? { paddingTop: 80 } : { paddingTop: 200 },
+          isFocused ? { paddingTop: 120 } : { paddingTop: 160 },
         ]}
       >
         <Formik
